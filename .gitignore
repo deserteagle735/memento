@@ -164,4 +164,8 @@ compile_commands.json
 # QtCreator local machine specific files for imported projects
 *creator.user*
 
+#design files
+wbs/
+test.py
+test.ui
 # End of https://www.gitignore.io/api/qt,code,python
