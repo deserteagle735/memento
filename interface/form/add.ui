@@ -49,19 +49,31 @@
         <string>Từ mới</string>
        </property>
        <property name="buddy">
-        <cstring>text_vocalubary</cstring>
+        <cstring>text_vocabulary</cstring>
        </property>
       </widget>
      </item>
      <item row="7" column="0">
       <widget class="QLabel" name="picture">
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>16777215</height>
+        </size>
+       </property>
        <property name="text">
         <string/>
+       </property>
+       <property name="scaledContents">
+        <bool>false</bool>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
      </item>
      <item row="1" column="0">
-      <widget class="QLineEdit" name="text_vocalubary">
+      <widget class="QLineEdit" name="text_vocabulary">
        <property name="styleSheet">
         <string notr="true">border-radius:10px;
 border:2px solid gray;
@@ -71,7 +83,7 @@ padding: 0 8px;</string>
      </item>
      <item row="7" column="1">
       <layout class="QGridLayout" name="gridLayout_12">
-       <item row="5" column="1">
+       <item row="7" column="1">
         <widget class="QWidget" name="widget_12" native="true">
          <widget class="QLabel" name="label_53">
           <property name="enabled">
@@ -94,8 +106,11 @@ padding: 0 8px;</string>
          </widget>
         </widget>
        </item>
-       <item row="1" column="1">
+       <item row="3" column="1">
         <widget class="QPushButton" name="button_delete_picture">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="styleSheet">
           <string notr="true">border-radius:10px;
 border:2px solid gray;
@@ -108,8 +123,11 @@ padding: 0 8px;
          </property>
         </widget>
        </item>
-       <item row="4" column="1">
+       <item row="6" column="1">
         <widget class="QPushButton" name="button_delete_record">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="styleSheet">
           <string notr="true">border-radius:10px;
 border:2px solid gray;
@@ -122,7 +140,7 @@ padding: 0 8px;
          </property>
         </widget>
        </item>
-       <item row="4" column="0">
+       <item row="6" column="0">
         <widget class="QPushButton" name="button_record">
          <property name="styleSheet">
           <string notr="true">border-radius:10px;
@@ -134,10 +152,16 @@ padding: 0 8px;
          <property name="text">
           <string>Bắt đầu</string>
          </property>
+         <property name="flat">
+          <bool>false</bool>
+         </property>
         </widget>
        </item>
-       <item row="5" column="0">
+       <item row="7" column="0">
         <widget class="QPushButton" name="button_play_record">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="styleSheet">
           <string notr="true">border-radius:10px;
 border:2px solid gray;
@@ -148,9 +172,12 @@ padding: 0 8px;
          <property name="text">
           <string>Nghe lại</string>
          </property>
+         <property name="flat">
+          <bool>false</bool>
+         </property>
         </widget>
        </item>
-       <item row="3" column="0">
+       <item row="5" column="0">
         <widget class="QLabel" name="label_52">
          <property name="text">
           <string>Ghi âm</string>
@@ -160,16 +187,7 @@ padding: 0 8px;
          </property>
         </widget>
        </item>
-       <item row="7" column="0" colspan="2">
-        <widget class="QLineEdit" name="text_tag">
-         <property name="styleSheet">
-          <string notr="true">border-radius:10px;
-border:2px solid gray;
-padding: 0 8px;</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0" colspan="2">
+       <item row="2" column="0" colspan="2">
         <widget class="QLabel" name="label_51">
          <property name="text">
           <string>Hình ảnh gợi ý</string>
@@ -179,17 +197,7 @@ padding: 0 8px;</string>
          </property>
         </widget>
        </item>
-       <item row="6" column="0" colspan="2">
-        <widget class="QLabel" name="label_54">
-         <property name="text">
-          <string>Gắn thẻ</string>
-         </property>
-         <property name="buddy">
-          <cstring>text_tag</cstring>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
+       <item row="3" column="0">
         <widget class="QPushButton" name="button_choose_picture">
          <property name="styleSheet">
           <string notr="true">border-radius:10px;
@@ -200,6 +208,25 @@ padding: 0 8px;
          </property>
          <property name="text">
           <string>Chọn ảnh</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0" colspan="2">
+        <widget class="QLineEdit" name="text_tag">
+         <property name="styleSheet">
+          <string notr="true">border-radius:10px;
+border:2px solid gray;
+padding: 0 8px;</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0" colspan="2">
+        <widget class="QLabel" name="label_54">
+         <property name="text">
+          <string>Gắn thẻ</string>
+         </property>
+         <property name="buddy">
+          <cstring>text_tag</cstring>
          </property>
         </widget>
        </item>
@@ -323,46 +350,9 @@ padding: 0 8px;</string>
    <item>
     <widget class="QWidget" name="widget_3" native="true">
      <layout class="QGridLayout" name="gridLayout_13">
-      <item row="0" column="4">
-       <widget class="QPushButton" name="butto_cancel">
-        <property name="toolTip">
-         <string>F2</string>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">border-radius:10px;
-border:2px solid gray;
-padding: 0 8px;
-background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #f6f7fa, stop: 1 #dadbde);</string>
-        </property>
-        <property name="text">
-         <string>Thoát</string>
-        </property>
-        <property name="shortcut">
-         <string>F2</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QPushButton" name="button_history">
-        <property name="toolTip">
-         <string>F3</string>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">border-radius:10px;
-border:2px solid gray;
-padding: 0 8px;
- background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #f6f7fa, stop: 1 #dadbde);</string>
-        </property>
-        <property name="text">
-         <string>Lịch sử</string>
-        </property>
-        <property name="shortcut">
-         <string>F3</string>
-        </property>
-       </widget>
-      </item>
+      <property name="sizeConstraint">
+       <enum>QLayout::SetDefaultConstraint</enum>
+      </property>
       <item row="0" column="3">
        <widget class="QPushButton" name="button_add">
         <property name="toolTip">
@@ -393,24 +383,68 @@ background-color: qlineargradient(spread:pad, x1:0.494, y1:0.989, x2:0.494, y2:0
       <item row="0" column="2">
        <widget class="QWidget" name="widget_11" native="true"/>
       </item>
+      <item row="0" column="1">
+       <widget class="QPushButton" name="button_history">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="toolTip">
+         <string>F3</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-radius:10px;
+border:2px solid gray;
+padding: 0 8px;
+ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);</string>
+        </property>
+        <property name="text">
+         <string>Lịch sử</string>
+        </property>
+        <property name="shortcut">
+         <string>F3</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="4">
+       <widget class="QPushButton" name="button_exit">
+        <property name="toolTip">
+         <string>F2</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border-radius:10px;
+border:2px solid gray;
+padding: 0 8px;
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);</string>
+        </property>
+        <property name="text">
+         <string>Thoát</string>
+        </property>
+        <property name="shortcut">
+         <string>F2</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>
   </layout>
  </widget>
  <tabstops>
-  <tabstop>text_vocalubary</tabstop>
+  <tabstop>text_vocabulary</tabstop>
   <tabstop>combobox_category</tabstop>
   <tabstop>text_phonetic</tabstop>
   <tabstop>text_hint</tabstop>
+  <tabstop>text_definition</tabstop>
+  <tabstop>text_tag</tabstop>
   <tabstop>button_choose_picture</tabstop>
   <tabstop>button_delete_picture</tabstop>
   <tabstop>button_record</tabstop>
-  <tabstop>button_delete_record</tabstop>
   <tabstop>button_play_record</tabstop>
-  <tabstop>text_tag</tabstop>
+  <tabstop>button_delete_record</tabstop>
   <tabstop>button_add</tabstop>
-  <tabstop>butto_cancel</tabstop>
+  <tabstop>button_exit</tabstop>
   <tabstop>button_history</tabstop>
  </tabstops>
  <resources>

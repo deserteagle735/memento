@@ -2,6 +2,7 @@ import traceback
 import sys
 from interface.qt import *
 import interface
+
 def run():
     try:
         _run()
@@ -12,11 +13,11 @@ def run():
                              traceback.format_exc())
 
 def _run():
-    
+    QCoreApplication.setApplicationName("Memento")
     app = MementoApplication(sys.argv)
-
     import interface.main
     main_window = interface.main.MementoMainWindow(app, sys.argv)
+
     app.exec_()
 
 class MementoApplication(QApplication):
@@ -24,6 +25,7 @@ class MementoApplication(QApplication):
     def __init__(self, argv):
         QApplication.__init__(self, argv)
         self._argv = argv
+       
 
 class DialogManager():
     def __init__(self):
@@ -32,15 +34,15 @@ class DialogManager():
             "browser": self.browser
         }
 
-    def open_dialog(self, dialog_name):
-        self.dialog_function[dialog_name]()
+    def open_dialog(self, dialog_name, controller):
+        self.dialog_function[dialog_name](controller)
 
-    def add(self):
+    def add(self, controller):
         import interface.add
-        self.dialog_add = interface.add.Add()
+        self.dialog_add = interface.add.Add(controller)
 
-    def browser(self):
+    def browser(self, controller):
         import interface.browser
-        self.dialog_browser = interface.browser.Browser()
+        self.dialog_browser = interface.browser.Browser(controller)
 
 dialog = DialogManager()

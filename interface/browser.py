@@ -2,10 +2,12 @@ import interface
 from interface.qt import *
 
 class Browser(QDialog):
-    def __init__(self):
+    def __init__(self, controller):
         QDialog.__init__(self, None, Qt.Window)
+        self.controller = controller
         self.setModal(True)
-        self.setup_ui() 
+        self.setup_ui()
+        
         
     def setup_ui(self):
         self.setup_dialog()

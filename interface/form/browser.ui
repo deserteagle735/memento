@@ -38,384 +38,38 @@
   <property name="styleSheet">
    <string notr="true">font: 12pt &quot;SF Pro Display&quot;;</string>
   </property>
-  <widget class="QSplitter" name="splitter">
-   <property name="geometry">
-    <rect>
-     <x>11</x>
-     <y>10</y>
-     <width>878</width>
-     <height>445</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-   <widget class="QWidget" name="layoutWidget">
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <layout class="QGridLayout" name="gridLayout">
-       <item row="1" column="0">
-        <widget class="QLabel" name="label_2">
-         <property name="text">
-          <string>Tìm kiếm</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="label_3">
-         <property name="text">
-          <string>Trường</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QLineEdit" name="text_search_box">
-         <property name="minimumSize">
-          <size>
-           <width>430</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">border-radius:10px;
-border:2px solid gray;
-padding: 0 8px;</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="2">
-        <widget class="QPushButton" name="button_search">
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="../../resource.qrc">
-           <normaloff>:/resource/search.png</normaloff>:/resource/search.png</iconset>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QComboBox" name="comboBox_field">
-         <property name="styleSheet">
-          <string notr="true">QComboBox{border: 2px solid gray;
-border-radius:10px; 
-padding: 1px 18px 1px 3px;
-min-width: 6em;
-}
-
-QComboBox::drop-down {
-    subcontrol-origin: padding;
-    subcontrol-position: top right;
-    width: 20px;
-
-    border-left-width: 1px;
-    border-left-color: darkgray;
-    border-left-style: solid;
-    border-top-right-radius: 10px; 
-    border-bottom-right-radius: 3px;
-}
-QComboBox::down-arrow{image: url(:/resource/drop-down-arrow.png);}
-
-</string>
-         </property>
-         <item>
-          <property name="text">
-           <string>Từ mới</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Thẻ</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Trình độ</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Ngày thêm</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <widget class="QTableWidget" name="tableWidget">
-       <property name="showGrid">
-        <bool>true</bool>
-       </property>
-       <property name="gridStyle">
-        <enum>Qt::SolidLine</enum>
-       </property>
-       <property name="sortingEnabled">
-        <bool>true</bool>
-       </property>
-       <property name="rowCount">
-        <number>4</number>
-       </property>
-       <property name="columnCount">
-        <number>4</number>
-       </property>
-       <attribute name="horizontalHeaderCascadingSectionResizes">
-        <bool>true</bool>
-       </attribute>
-       <attribute name="horizontalHeaderDefaultSectionSize">
-        <number>100</number>
-       </attribute>
-       <attribute name="horizontalHeaderStretchLastSection">
-        <bool>true</bool>
-       </attribute>
-       <attribute name="verticalHeaderVisible">
-        <bool>true</bool>
-       </attribute>
-       <attribute name="verticalHeaderStretchLastSection">
-        <bool>false</bool>
-       </attribute>
-       <row/>
-       <row/>
-       <row/>
-       <row/>
-       <column>
-        <property name="text">
-         <string>Từ mới</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>Thẻ</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>Trình độ</string>
-        </property>
-       </column>
-       <column>
-        <property name="text">
-         <string>Ngày thêm</string>
-        </property>
-       </column>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QGroupBox" name="editor">
-    <property name="title">
-     <string/>
-    </property>
-    <property name="flat">
-     <bool>false</bool>
-    </property>
-    <layout class="QVBoxLayout" name="verticalLayout_2">
-     <property name="leftMargin">
-      <number>0</number>
+  <layout class="QVBoxLayout" name="verticalLayout_3">
+   <item>
+    <widget class="QSplitter" name="splitter">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
      </property>
-     <property name="topMargin">
-      <number>0</number>
-     </property>
-     <property name="rightMargin">
-      <number>0</number>
-     </property>
-     <property name="bottomMargin">
-      <number>0</number>
-     </property>
-     <item>
-      <layout class="QGridLayout" name="gridLayout_11">
-       <item row="1" column="1">
-        <widget class="QComboBox" name="combobox_category">
-         <property name="styleSheet">
-          <string notr="true">QComboBox{border: 2px solid gray;
-border-radius:10px; 
-padding: 1px 18px 1px 3px;
-min-width: 6em;
-}
-
-QComboBox::drop-down {
-    subcontrol-origin: padding;
-    subcontrol-position: top right;
-    width: 20px;
-
-    border-left-width: 1px;
-    border-left-color: darkgray;
-    border-left-style: solid;
-    border-top-right-radius: 10px; 
-    border-bottom-right-radius: 3px;
-}
-QComboBox::down-arrow{image: url(:/resource/drop-down-arrow.png);}
-
-</string>
-         </property>
-         <item>
-          <property name="text">
-           <string>chưa xác định</string>
-          </property>
+     <widget class="QWidget" name="layoutWidget">
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <layout class="QGridLayout" name="gridLayout">
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>Tìm kiếm</string>
+           </property>
+          </widget>
          </item>
-         <item>
-          <property name="text">
-           <string>n - danh từ</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>v - động từ</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>adj - tính từ</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>adv - trạng từ</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>np - cụm danh từ</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>vp - cụm động từ</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>idiom - thành ngữ</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>clause - mệnh đề</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QLineEdit" name="text_phonetic">
-         <property name="styleSheet">
-          <string notr="true">border-radius:10px;
-border:2px solid gray;
-padding: 0 8px;</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="1">
-        <widget class="QLineEdit" name="text_hint">
-         <property name="styleSheet">
-          <string notr="true">border-radius:10px;
-border:2px solid gray;
-padding: 0 8px;</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QLabel" name="label_38">
-         <property name="text">
-          <string>Gợi ý</string>
-         </property>
-         <property name="buddy">
-          <cstring>text_hint</cstring>
-         </property>
-        </widget>
-       </item>
-       <item row="7" column="1">
-        <layout class="QGridLayout" name="gridLayout_12">
-         <item row="5" column="1">
-          <widget class="QWidget" name="widget_12" native="true">
-           <widget class="QLabel" name="label_53">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="geometry">
-             <rect>
-              <x>0</x>
-              <y>0</y>
-              <width>31</width>
-              <height>31</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="pixmap">
-             <pixmap>../resource/speaker.png</pixmap>
-            </property>
-           </widget>
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_3">
+           <property name="text">
+            <string>Trường</string>
+           </property>
           </widget>
          </item>
          <item row="1" column="1">
-          <widget class="QPushButton" name="button_delete_picture">
-           <property name="styleSheet">
-            <string notr="true">border-radius:10px;
-border:2px solid gray;
-padding: 0 8px;
- background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #f6f7fa, stop: 1 #dadbde);</string>
+          <widget class="QLineEdit" name="text_search_box">
+           <property name="minimumSize">
+            <size>
+             <width>430</width>
+             <height>0</height>
+            </size>
            </property>
-           <property name="text">
-            <string>Xóa</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="1">
-          <widget class="QPushButton" name="button_delete_record">
-           <property name="styleSheet">
-            <string notr="true">border-radius:10px;
-border:2px solid gray;
-padding: 0 8px;
- background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #f6f7fa, stop: 1 #dadbde);</string>
-           </property>
-           <property name="text">
-            <string>Xóa</string>
-           </property>
-          </widget>
-         </item>
-         <item row="4" column="0">
-          <widget class="QPushButton" name="button_record">
-           <property name="styleSheet">
-            <string notr="true">border-radius:10px;
-border:2px solid gray;
-padding: 0 8px;
- background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #f6f7fa, stop: 1 #dadbde);</string>
-           </property>
-           <property name="text">
-            <string>Bắt đầu</string>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="0">
-          <widget class="QPushButton" name="button_play_record">
-           <property name="styleSheet">
-            <string notr="true">border-radius:10px;
-border:2px solid gray;
-padding: 0 8px;
- background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #f6f7fa, stop: 1 #dadbde);</string>
-           </property>
-           <property name="text">
-            <string>Nghe lại</string>
-           </property>
-          </widget>
-         </item>
-         <item row="3" column="0">
-          <widget class="QLabel" name="label_52">
-           <property name="text">
-            <string>Ghi âm</string>
-           </property>
-           <property name="buddy">
-            <cstring>button_record</cstring>
-           </property>
-          </widget>
-         </item>
-         <item row="7" column="0" colspan="2">
-          <widget class="QLineEdit" name="text_tag">
            <property name="styleSheet">
             <string notr="true">border-radius:10px;
 border:2px solid gray;
@@ -423,197 +77,542 @@ padding: 0 8px;</string>
            </property>
           </widget>
          </item>
-         <item row="0" column="0" colspan="2">
-          <widget class="QLabel" name="label_51">
+         <item row="1" column="2">
+          <widget class="QPushButton" name="button_search">
            <property name="text">
-            <string>Hình ảnh gợi ý</string>
+            <string/>
            </property>
-           <property name="buddy">
-            <cstring>button_choose_picture</cstring>
+           <property name="icon">
+            <iconset resource="../../resource.qrc">
+             <normaloff>:/resource/search.png</normaloff>:/resource/search.png</iconset>
            </property>
           </widget>
          </item>
-         <item row="6" column="0" colspan="2">
-          <widget class="QLabel" name="label_54">
-           <property name="text">
-            <string>Gắn thẻ</string>
-           </property>
-           <property name="buddy">
-            <cstring>text_tag</cstring>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QPushButton" name="button_choose_picture">
+         <item row="0" column="1">
+          <widget class="QComboBox" name="comboBox_field">
            <property name="styleSheet">
-            <string notr="true">border-radius:10px;
-border:2px solid gray;
-padding: 0 8px;
- background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #f6f7fa, stop: 1 #dadbde);</string>
+            <string notr="true">QComboBox{border: 2px solid gray;
+border-radius:10px; 
+padding: 1px 18px 1px 3px;
+min-width: 6em;
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 20px;
+
+    border-left-width: 1px;
+    border-left-color: darkgray;
+    border-left-style: solid;
+    border-top-right-radius: 10px; 
+    border-bottom-right-radius: 3px;
+}
+QComboBox::down-arrow{image: url(:/resource/drop-down-arrow.png);}
+
+</string>
            </property>
-           <property name="text">
-            <string>Chọn ảnh</string>
-           </property>
+           <item>
+            <property name="text">
+             <string>Từ mới</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Thẻ</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Trình độ</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Ngày thêm</string>
+            </property>
+           </item>
           </widget>
          </item>
         </layout>
        </item>
-       <item row="0" column="1">
-        <widget class="QLabel" name="label_37">
-         <property name="text">
-          <string>Từ loại</string>
+       <item>
+        <widget class="QTableWidget" name="tableWidget">
+         <property name="showGrid">
+          <bool>true</bool>
          </property>
-         <property name="buddy">
-          <cstring>combobox_category</cstring>
+         <property name="gridStyle">
+          <enum>Qt::SolidLine</enum>
          </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QLabel" name="label_39">
-         <property name="text">
-          <string>Phiên âm</string>
+         <property name="sortingEnabled">
+          <bool>true</bool>
          </property>
-         <property name="buddy">
-          <cstring>text_phonetic</cstring>
+         <property name="rowCount">
+          <number>4</number>
          </property>
-        </widget>
-       </item>
-       <item row="5" column="0">
-        <widget class="QLabel" name="label_40">
-         <property name="text">
-          <string>Dịch nghĩa</string>
+         <property name="columnCount">
+          <number>4</number>
          </property>
-        </widget>
-       </item>
-       <item row="6" column="0" colspan="2">
-        <widget class="QLineEdit" name="text_definition">
-         <property name="styleSheet">
-          <string notr="true">border-radius:10px;
-border:2px solid gray;
-padding: 0 8px;</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <widget class="QLabel" name="label_36">
-         <property name="text">
-          <string>Từ mới</string>
-         </property>
-         <property name="buddy">
-          <cstring>text_vocalubary</cstring>
-         </property>
-        </widget>
-       </item>
-       <item row="7" column="0">
-        <widget class="QLabel" name="picture">
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLineEdit" name="text_vocalubary">
-         <property name="styleSheet">
-          <string notr="true">border-radius:10px;
-border:2px solid gray;
-padding: 0 8px;</string>
-         </property>
-        </widget>
-       </item>
-       <item row="8" column="0" colspan="2">
-        <widget class="QWidget" name="widget_3" native="true">
-         <layout class="QGridLayout" name="gridLayout_13">
-          <property name="leftMargin">
-           <number>6</number>
+         <attribute name="horizontalHeaderCascadingSectionResizes">
+          <bool>true</bool>
+         </attribute>
+         <attribute name="horizontalHeaderDefaultSectionSize">
+          <number>100</number>
+         </attribute>
+         <attribute name="horizontalHeaderStretchLastSection">
+          <bool>true</bool>
+         </attribute>
+         <attribute name="verticalHeaderVisible">
+          <bool>true</bool>
+         </attribute>
+         <attribute name="verticalHeaderStretchLastSection">
+          <bool>false</bool>
+         </attribute>
+         <row/>
+         <row/>
+         <row/>
+         <row/>
+         <column>
+          <property name="text">
+           <string>Từ mới</string>
           </property>
-          <property name="topMargin">
-           <number>6</number>
+         </column>
+         <column>
+          <property name="text">
+           <string>Thẻ</string>
           </property>
-          <property name="rightMargin">
-           <number>6</number>
+         </column>
+         <column>
+          <property name="text">
+           <string>Trình độ</string>
           </property>
-          <property name="bottomMargin">
-           <number>6</number>
+         </column>
+         <column>
+          <property name="text">
+           <string>Ngày thêm</string>
           </property>
-          <item row="0" column="4">
-           <widget class="QPushButton" name="butto_discard">
-            <property name="toolTip">
-             <string>F2</string>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">border-radius:10px;
-border:2px solid gray;
-padding: 0 8px;
-background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #f6f7fa, stop: 1 #dadbde);</string>
-            </property>
+         </column>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QGroupBox" name="editor">
+      <property name="title">
+       <string/>
+      </property>
+      <property name="flat">
+       <bool>false</bool>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <layout class="QGridLayout" name="gridLayout_11">
+         <item row="1" column="1">
+          <widget class="QComboBox" name="combobox_category">
+           <property name="styleSheet">
+            <string notr="true">QComboBox{border: 2px solid gray;
+border-radius:10px; 
+padding: 1px 18px 1px 3px;
+min-width: 6em;
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 20px;
+
+    border-left-width: 1px;
+    border-left-color: darkgray;
+    border-left-style: solid;
+    border-top-right-radius: 10px; 
+    border-bottom-right-radius: 3px;
+}
+QComboBox::down-arrow{image: url(:/resource/drop-down-arrow.png);}
+
+</string>
+           </property>
+           <item>
             <property name="text">
-             <string>Hủy</string>
+             <string>chưa xác định</string>
             </property>
-            <property name="shortcut">
-             <string>F2</string>
+           </item>
+           <item>
+            <property name="text">
+             <string>n - danh từ</string>
             </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QPushButton" name="button_delete">
-            <property name="toolTip">
-             <string>F3</string>
+           </item>
+           <item>
+            <property name="text">
+             <string>v - động từ</string>
             </property>
-            <property name="styleSheet">
-             <string notr="true">border-radius:10px;
+           </item>
+           <item>
+            <property name="text">
+             <string>adj - tính từ</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>adv - trạng từ</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>np - cụm danh từ</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>vp - cụm động từ</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>idiom - thành ngữ</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>clause - mệnh đề</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLineEdit" name="text_phonetic">
+           <property name="styleSheet">
+            <string notr="true">border-radius:10px;
+border:2px solid gray;
+padding: 0 8px;</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QLineEdit" name="text_hint">
+           <property name="styleSheet">
+            <string notr="true">border-radius:10px;
+border:2px solid gray;
+padding: 0 8px;</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLabel" name="label_38">
+           <property name="text">
+            <string>Gợi ý</string>
+           </property>
+           <property name="buddy">
+            <cstring>text_hint</cstring>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="1">
+          <layout class="QGridLayout" name="gridLayout_12">
+           <item row="5" column="1">
+            <widget class="QWidget" name="widget_12" native="true">
+             <widget class="QLabel" name="label_53">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>31</width>
+                <height>31</height>
+               </rect>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="pixmap">
+               <pixmap>../resource/speaker.png</pixmap>
+              </property>
+             </widget>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QPushButton" name="button_delete_picture">
+             <property name="styleSheet">
+              <string notr="true">border-radius:10px;
 border:2px solid gray;
 padding: 0 8px;
  background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
                                       stop: 0 #f6f7fa, stop: 1 #dadbde);</string>
+             </property>
+             <property name="text">
+              <string>Xóa</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1">
+            <widget class="QPushButton" name="button_delete_record">
+             <property name="styleSheet">
+              <string notr="true">border-radius:10px;
+border:2px solid gray;
+padding: 0 8px;
+ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);</string>
+             </property>
+             <property name="text">
+              <string>Xóa</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QPushButton" name="button_record">
+             <property name="styleSheet">
+              <string notr="true">border-radius:10px;
+border:2px solid gray;
+padding: 0 8px;
+ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);</string>
+             </property>
+             <property name="text">
+              <string>Bắt đầu</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="0">
+            <widget class="QPushButton" name="button_play_record">
+             <property name="styleSheet">
+              <string notr="true">border-radius:10px;
+border:2px solid gray;
+padding: 0 8px;
+ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);</string>
+             </property>
+             <property name="text">
+              <string>Nghe lại</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="label_52">
+             <property name="text">
+              <string>Ghi âm</string>
+             </property>
+             <property name="buddy">
+              <cstring>button_record</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="0" colspan="2">
+            <widget class="QLineEdit" name="text_tag">
+             <property name="styleSheet">
+              <string notr="true">border-radius:10px;
+border:2px solid gray;
+padding: 0 8px;</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0" colspan="2">
+            <widget class="QLabel" name="label_51">
+             <property name="text">
+              <string>Hình ảnh gợi ý</string>
+             </property>
+             <property name="buddy">
+              <cstring>button_choose_picture</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="0" colspan="2">
+            <widget class="QLabel" name="label_54">
+             <property name="text">
+              <string>Gắn thẻ</string>
+             </property>
+             <property name="buddy">
+              <cstring>text_tag</cstring>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QPushButton" name="button_choose_picture">
+             <property name="styleSheet">
+              <string notr="true">border-radius:10px;
+border:2px solid gray;
+padding: 0 8px;
+ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);</string>
+             </property>
+             <property name="text">
+              <string>Chọn ảnh</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="label_37">
+           <property name="text">
+            <string>Từ loại</string>
+           </property>
+           <property name="buddy">
+            <cstring>combobox_category</cstring>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_39">
+           <property name="text">
+            <string>Phiên âm</string>
+           </property>
+           <property name="buddy">
+            <cstring>text_phonetic</cstring>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="label_40">
+           <property name="text">
+            <string>Dịch nghĩa</string>
+           </property>
+          </widget>
+         </item>
+         <item row="6" column="0" colspan="2">
+          <widget class="QLineEdit" name="text_definition">
+           <property name="styleSheet">
+            <string notr="true">border-radius:10px;
+border:2px solid gray;
+padding: 0 8px;</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_36">
+           <property name="text">
+            <string>Từ mới</string>
+           </property>
+           <property name="buddy">
+            <cstring>text_vocalubary</cstring>
+           </property>
+          </widget>
+         </item>
+         <item row="7" column="0">
+          <widget class="QLabel" name="picture">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="scaledContents">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLineEdit" name="text_vocalubary">
+           <property name="styleSheet">
+            <string notr="true">border-radius:10px;
+border:2px solid gray;
+padding: 0 8px;</string>
+           </property>
+          </widget>
+         </item>
+         <item row="8" column="0" colspan="2">
+          <widget class="QWidget" name="widget_3" native="true">
+           <layout class="QGridLayout" name="gridLayout_13">
+            <property name="leftMargin">
+             <number>6</number>
             </property>
-            <property name="text">
-             <string>Xóa</string>
+            <property name="topMargin">
+             <number>6</number>
             </property>
-            <property name="shortcut">
-             <string>F3</string>
+            <property name="rightMargin">
+             <number>6</number>
             </property>
-           </widget>
-          </item>
-          <item row="0" column="3">
-           <widget class="QPushButton" name="button_save">
-            <property name="toolTip">
-             <string>F1</string>
+            <property name="bottomMargin">
+             <number>6</number>
             </property>
-            <property name="styleSheet">
-             <string notr="true">border-radius:10px;
+            <item row="0" column="4">
+             <widget class="QPushButton" name="butto_discard">
+              <property name="toolTip">
+               <string>F2</string>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">border-radius:10px;
+border:2px solid gray;
+padding: 0 8px;
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);</string>
+              </property>
+              <property name="text">
+               <string>Hủy</string>
+              </property>
+              <property name="shortcut">
+               <string>F2</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QPushButton" name="button_delete">
+              <property name="toolTip">
+               <string>F3</string>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">border-radius:10px;
+border:2px solid gray;
+padding: 0 8px;
+ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);</string>
+              </property>
+              <property name="text">
+               <string>Xóa</string>
+              </property>
+              <property name="shortcut">
+               <string>F3</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="3">
+             <widget class="QPushButton" name="button_save">
+              <property name="toolTip">
+               <string>F1</string>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">border-radius:10px;
 border:2px solid #3f8cc8;
 padding: 0 8px;
 color: rgb(255, 255, 255);
 background-color: qlineargradient(spread:pad, x1:0.494, y1:0.989, x2:0.494, y2:0.011, stop:0.863158 rgba(23, 132, 255, 250), stop:1 rgba(255, 255, 255, 255));
 </string>
-            </property>
-            <property name="text">
-             <string>Lưu</string>
-            </property>
-            <property name="shortcut">
-             <string>F1</string>
-            </property>
-            <property name="autoDefault">
-             <bool>false</bool>
-            </property>
-            <property name="flat">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="2">
-           <widget class="QWidget" name="widget_11" native="true"/>
-          </item>
-         </layout>
-        </widget>
+              </property>
+              <property name="text">
+               <string>Lưu</string>
+              </property>
+              <property name="shortcut">
+               <string>F1</string>
+              </property>
+              <property name="autoDefault">
+               <bool>false</bool>
+              </property>
+              <property name="flat">
+               <bool>false</bool>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="2">
+             <widget class="QWidget" name="widget_11" native="true"/>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
        </item>
       </layout>
-     </item>
-    </layout>
-   </widget>
-  </widget>
+     </widget>
+    </widget>
+   </item>
+  </layout>
  </widget>
  <resources>
   <include location="../../resource.qrc"/>

@@ -4,12 +4,14 @@ import interface
 from interface.form import main
 from interface.add import Add
 import traceback
+from memento.controller import Controller
 
 class MementoMainWindow(QMainWindow):
     def __init__(self, app, argv):
         QMainWindow.__init__(self)
         interface.main_window = self
-        self.setup_ui()   
+        self.controller = Controller()
+        self.setup_ui()
 
     def setup_ui(self):
         self.setup_main_window()
@@ -29,10 +31,11 @@ class MementoMainWindow(QMainWindow):
         self.form.button_browser.clicked.connect(self.on_button_browser_clicked)
 
     def on_button_add_clicked(self):
-        interface.dialog.open_dialog("add")
+        interface.dialog.open_dialog("add", self.controller)
 
     def on_button_browser_clicked(self):
-        interface.dialog.open_dialog("browser")
+        interface.dialog.open_dialog("browser", self.controller)
+
     
  
 
