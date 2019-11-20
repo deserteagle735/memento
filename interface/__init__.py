@@ -31,6 +31,7 @@ class DialogManager():
     def __init__(self):
         self.dialog_function = {
             "add" : self.add,
+            "test" : self.test,
             "browser": self.browser,
             "settings": self.settings
         }
@@ -41,6 +42,10 @@ class DialogManager():
     def add(self, controller):
         import interface.add
         self.dialog_add = interface.add.Add(controller)
+
+    def test(self, controller):
+        import interface.test
+        self.dialog_test = interface.test.Test(controller)
 
     def browser(self, controller):
         import interface.browser

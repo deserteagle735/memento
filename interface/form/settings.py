@@ -100,7 +100,7 @@ class Ui_Dialog(object):
         self.verticalLayout.addLayout(self.gridLayout_2)
 
         self.retranslateUi(Dialog)
-        self.tab.setCurrentIndex(1)
+        self.tab.setCurrentIndex(0)
         self.label.linkHovered['QString'].connect(self.combobox_field.setCurrentText)
         self.label_2.linkHovered['QString'].connect(self.spinbox_test_level.selectAll)
         self.label_3.linkHovered['QString'].connect(self.spinbox_hint_level.selectAll)

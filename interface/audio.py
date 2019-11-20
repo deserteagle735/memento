@@ -58,7 +58,10 @@ def play_audio(media_folder, filename):
     # player.play()
     #QSound.play("/home/deserteagle735/Desktop/PyQt-audio-record/test.wav")
     print("Playing record", filename)
-    QSound.play(os.path.join(media_folder, filename))
+    try:
+        QSound.play(os.path.join(media_folder, filename))
+    except QErrorMessage as e:
+        print(str(e))
     #player.play()
 
 player = QMediaPlayer()

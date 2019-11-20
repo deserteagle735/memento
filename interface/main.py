@@ -2,8 +2,6 @@ from interface.qt import *
 from memento.utils import  isWin, isMac
 import interface
 from interface.form import main
-from interface.add import Add
-import traceback
 from memento.controller import Controller
 
 class MementoMainWindow(QMainWindow):
@@ -28,11 +26,15 @@ class MementoMainWindow(QMainWindow):
     
     def setup_button(self):
         self.form.button_add.clicked.connect(self.button_add_clicked)
+        self.form.button_test.clicked.connect(self.button_test_clicked)
         self.form.button_browser.clicked.connect(self.button_browser_clicked)
         self.form.button_settings.clicked.connect(self.button_settings_clicked)
 
     def button_add_clicked(self):
         interface.dialog.open_dialog("add", self.controller)
+
+    def button_test_clicked(self):
+        interface.dialog.open_dialog("test", self.controller)
 
     def button_browser_clicked(self):
         interface.dialog.open_dialog("browser", self.controller)

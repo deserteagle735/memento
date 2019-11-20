@@ -166,6 +166,7 @@ compile_commands.json
 
 #design files
 wbs/
-test.py
-test.ui
+t.py
+t.ui
+
 # End of https://www.gitignore.io/api/qt,code,python

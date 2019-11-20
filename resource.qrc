@@ -1,5 +1,8 @@
 <RCC>
   <qresource prefix="/">
+    <file>resource/check.png</file>
+    <file>resource/remove.png</file>
+    <file>resource/question.png</file>
     <file>resource/speaker.png</file>
     <file>resource/search.png</file>
     <file>resource/media-record.png</file>
