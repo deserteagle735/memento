@@ -31,7 +31,8 @@ class DialogManager():
     def __init__(self):
         self.dialog_function = {
             "add" : self.add,
-            "browser": self.browser
+            "browser": self.browser,
+            "settings": self.settings
         }
 
     def open_dialog(self, dialog_name, controller):
@@ -44,5 +45,9 @@ class DialogManager():
     def browser(self, controller):
         import interface.browser
         self.dialog_browser = interface.browser.Browser(controller)
+
+    def settings(self, controller):
+        import interface.settings
+        self.dialog_settings = interface.settings.Settings(controller)
 
 dialog = DialogManager()

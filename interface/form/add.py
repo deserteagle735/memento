@@ -13,6 +13,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
+        Dialog.setWindowModality(QtCore.Qt.ApplicationModal)
         Dialog.resize(400, 440)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("../resource/icon/memento.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -62,6 +63,7 @@ class Ui_Dialog(object):
 "padding: 0 8px;\n"
 " background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
 "                                      stop: 0 #f6f7fa, stop: 1 #dadbde);")
+        self.button_delete_picture.setAutoDefault(False)
         self.button_delete_picture.setObjectName("button_delete_picture")
         self.gridLayout_12.addWidget(self.button_delete_picture, 3, 1, 1, 1)
         self.button_delete_record = QtWidgets.QPushButton(Dialog)
@@ -71,6 +73,7 @@ class Ui_Dialog(object):
 "padding: 0 8px;\n"
 " background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
 "                                      stop: 0 #f6f7fa, stop: 1 #dadbde);")
+        self.button_delete_record.setAutoDefault(False)
         self.button_delete_record.setObjectName("button_delete_record")
         self.gridLayout_12.addWidget(self.button_delete_record, 6, 1, 1, 1)
         self.button_record = QtWidgets.QPushButton(Dialog)
@@ -79,6 +82,7 @@ class Ui_Dialog(object):
 "padding: 0 8px;\n"
 " background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
 "                                      stop: 0 #f6f7fa, stop: 1 #dadbde);")
+        self.button_record.setAutoDefault(False)
         self.button_record.setFlat(False)
         self.button_record.setObjectName("button_record")
         self.gridLayout_12.addWidget(self.button_record, 6, 0, 1, 1)
@@ -89,6 +93,7 @@ class Ui_Dialog(object):
 "padding: 0 8px;\n"
 " background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
 "                                      stop: 0 #f6f7fa, stop: 1 #dadbde);")
+        self.button_play_record.setAutoDefault(False)
         self.button_play_record.setFlat(False)
         self.button_play_record.setObjectName("button_play_record")
         self.gridLayout_12.addWidget(self.button_play_record, 7, 0, 1, 1)
@@ -104,6 +109,7 @@ class Ui_Dialog(object):
 "padding: 0 8px;\n"
 " background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
 "                                      stop: 0 #f6f7fa, stop: 1 #dadbde);")
+        self.button_choose_picture.setAutoDefault(False)
         self.button_choose_picture.setObjectName("button_choose_picture")
         self.gridLayout_12.addWidget(self.button_choose_picture, 3, 0, 1, 1)
         self.text_tag = QtWidgets.QLineEdit(Dialog)
@@ -197,6 +203,7 @@ class Ui_Dialog(object):
 "padding: 0 8px;\n"
 " background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
 "                                      stop: 0 #f6f7fa, stop: 1 #dadbde);")
+        self.button_history.setAutoDefault(False)
         self.button_history.setObjectName("button_history")
         self.gridLayout_13.addWidget(self.button_history, 0, 1, 1, 1)
         self.button_exit = QtWidgets.QPushButton(self.widget_3)
@@ -205,6 +212,7 @@ class Ui_Dialog(object):
 "padding: 0 8px;\n"
 "background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
 "                                      stop: 0 #f6f7fa, stop: 1 #dadbde);")
+        self.button_exit.setAutoDefault(False)
         self.button_exit.setObjectName("button_exit")
         self.gridLayout_13.addWidget(self.button_exit, 0, 4, 1, 1)
         self.verticalLayout_4.addWidget(self.widget_3)

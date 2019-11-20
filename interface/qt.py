@@ -12,7 +12,8 @@ except ImportError:
     import sip
 
 from PyQt5.QtCore import pyqtRemoveInputHook # pylint: disable=no-name-in-module
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import *
+from PyQt5 import QtCore
 
 qtmajor = (QT_VERSION & 0xff0000) >> 16
 qtminor = (QT_VERSION & 0x00ff00) >> 8

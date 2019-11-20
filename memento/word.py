@@ -2,6 +2,7 @@ import datetime
 class Word(object):
 
     def __init__(self,
+                id=None,
                 vocabulary="test",
                 category="test",
                 phonetic = "",
@@ -10,6 +11,7 @@ class Word(object):
                 tag = "",
                 picture_name = "",
                 record_name = ""):
+        self.id = id
         self.vocabulary = vocabulary
         self.category = category
         self.phonetic = phonetic

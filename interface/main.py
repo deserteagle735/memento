@@ -27,14 +27,18 @@ class MementoMainWindow(QMainWindow):
         self.form.setupUi(self)
     
     def setup_button(self):
-        self.form.button_add.clicked.connect(self.on_button_add_clicked)
-        self.form.button_browser.clicked.connect(self.on_button_browser_clicked)
+        self.form.button_add.clicked.connect(self.button_add_clicked)
+        self.form.button_browser.clicked.connect(self.button_browser_clicked)
+        self.form.button_settings.clicked.connect(self.button_settings_clicked)
 
-    def on_button_add_clicked(self):
+    def button_add_clicked(self):
         interface.dialog.open_dialog("add", self.controller)
 
-    def on_button_browser_clicked(self):
+    def button_browser_clicked(self):
         interface.dialog.open_dialog("browser", self.controller)
+
+    def button_settings_clicked(self):
+        interface.dialog.open_dialog("settings", self.controller)
 
     
  

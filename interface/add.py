@@ -13,6 +13,7 @@ class Add(QDialog):
         self.controller = controller
         self.picture_name = ""
         self.record_name = ""
+        self.hitory = []
         self.setModal(True)
         self.setup_ui() 
         
@@ -28,6 +29,7 @@ class Add(QDialog):
         self.form.setupUi(self)
 
     def setup_button(self):        
+        #disable dialog accept role
         # picture
         self.form.button_choose_picture.clicked.connect(self.choose_picture)
         self.form.button_delete_picture.clicked.connect(self.delete_picture)
@@ -41,6 +43,8 @@ class Add(QDialog):
         self.form.button_exit.clicked.connect(self.exit_)
 
     def choose_picture(self):
+        picture_before = (self.picture_name != "")
+        picture_name_before = self.picture_name
         options = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog
         filename, _ = QFileDialog.getOpenFileName(self,"Chọn ảnh minh họa", "","Ảnh (*.jpg *.png *.jpeg)", options=options)
@@ -61,10 +65,17 @@ class Add(QDialog):
                 self.picture_name += ".png"
             self.form.button_delete_picture.setEnabled(True)
             shutil.copy2(filename,os.path.join(self.controller.media_folder_path, self.picture_name))
+            
+            #delete before file
+            if picture_before:
+                try:
+                    os.remove(os.path.join(self.controller.media_folder_path, picture_name_before))
+                    print("delete", picture_name_before)
+                except:
+                    print("File " + picture_name_before + " not found")
 
     def delete_picture(self):
         if self.picture_name != "":
-            self.picture_name = ""
             self.form.button_delete_picture.setEnabled(False)
             self.form.picture.clear()
             try:
@@ -72,12 +83,22 @@ class Add(QDialog):
             except:
                 print("File " + self.picture_name + " not found")
 
+            self.picture_name = ""
+
     def record(self):
-        self.record_name = interface.audio.record_audio(self, self.controller.media_folder_path)
-        if self.record_name != "":
+        recorded_before = (self.record_name != "")
+        recorded_file_name = self.record_name
+        temp_file = interface.audio.record_audio(self, self.controller.media_folder_path)
+        if temp_file != "":
+            self.record_name = temp_file
             self.form.button_delete_record.setEnabled(True)
             self.form.button_play_record.setEnabled(True)
-            print(self.record_name)
+            
+            if recorded_before:
+                try:
+                    os.remove(os.path.join(self.controller.media_folder_path, recorded_file_name))
+                except:
+                    print("File " + recorded_file_name + " not found")
 
     def play_record(self):
         # if form.button_play_record.displayText() == "Nghe lại":
@@ -97,13 +118,14 @@ class Add(QDialog):
         
     def delete_record(self):
         if self.record_name != "":
-            self.record_name = ""
             self.form.button_delete_record.setEnabled(False)
             self.form.button_play_record.setEnabled(False)
             try:
                 os.remove(os.path.join(self.controller.media_folder_path,self.record_name))
             except:
                 print("File " + self.record_name + " not found")
+            
+            self.record_name = ""
 
     def add(self):
 
@@ -121,6 +143,7 @@ class Add(QDialog):
             return
         
         word = Word(
+            id= None,
             vocabulary= self.form.text_vocabulary.displayText().strip(),
             category= self.form.combobox_category.currentText(),
             phonetic= self.form.text_phonetic.displayText().strip(),

@@ -31,8 +31,9 @@ def record_audio(parent, media_folder):
     t = time.time()
     audio_recorder.record()
     QApplication.instance().processEvents()
+    print("Recording...")
     while not dialog_record.clickedButton():
-        txt ="Recording...\nTime: %0.1f"
+        txt ="Đang ghi âm...\nThời gian: %0.1f"
         dialog_record.setText(txt % (time.time() - t))
         dialog_record.show()
         QApplication.instance().processEvents()
@@ -41,7 +42,7 @@ def record_audio(parent, media_folder):
         audio_recorder.stop()
         try:
             os.remove(os.path.join(media_folder,filename)) 
-            print("deleted")
+            print("Record discard")
             return ""
         except:
             print("file " + filename + " not found")   
@@ -49,13 +50,14 @@ def record_audio(parent, media_folder):
         while time.time() - t < 1:
             time.sleep(0.25)
         audio_recorder.stop()
-        print("record succeedfully")
+        print("Record succeedfully", filename)
         return filename
 
 def play_audio(media_folder, filename):
     # player.setMedia(str(QUrl.fromLocalFile(os.path.join(media_folder, filename))))
     # player.play()
     #QSound.play("/home/deserteagle735/Desktop/PyQt-audio-record/test.wav")
+    print("Playing record", filename)
     QSound.play(os.path.join(media_folder, filename))
     #player.play()
 
