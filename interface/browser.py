@@ -1,9 +1,10 @@
 import interface
-from interface.qt import *
 import os
-from memento.word import Word
 import datetime
 import shutil
+from interface.qt import *
+from memento.word import Word
+from memento import utils
 
 class Browser(QDialog):
     def __init__(self, controller):
@@ -27,6 +28,11 @@ class Browser(QDialog):
             "Thêm hôm nay" : "today",
             "Trình độ" : "level"
         }
+
+        self.pics = []
+        self.recs = []
+        self.last_pic = ""
+        self.last_rec = ""
         self.setModal(True)
         self.setup_ui()
         self.setup_data()   
@@ -54,6 +60,8 @@ class Browser(QDialog):
         self.form.tableView.setColumnHidden(record.indexOf("phonetic"), True)
         self.form.tableView.setColumnHidden(record.indexOf("picture_name"), True)
         self.form.tableView.setColumnHidden(record.indexOf("record_name"), True)
+        self.form.tableView.setColumnHidden(record.indexOf("met"), True)
+        self.form.tableView.setColumnHidden(record.indexOf("correct"), True)
         self.form.tableView.selectionModel()
         
         #change data mapper when user change row
@@ -76,10 +84,11 @@ class Browser(QDialog):
 
         #picture
         self.picture_name = str(record.value("picture_name"))
+        self.last_pic = self.picture_name
         if self.picture_name != "":
             pixmap = QPixmap(os.path.join(self.controller.media_folder_path,self.picture_name))
-            width = pixmap.width()
             height = pixmap.height()
+            width = pixmap.width()
             if height > self.form.picture.height() or width > self.form.picture.width():
                 pixmap = pixmap.scaled(self.form.picture.width(), self.form.picture.height(), Qt.KeepAspectRatio)
             self.form.picture.setPixmap(pixmap)
@@ -90,12 +99,15 @@ class Browser(QDialog):
         
         #record
         self.record_name = str(record.value("record_name"))
+        self.last_rec = self.record_name
         if self.record_name != "":
             self.form.button_delete_record.setEnabled(True)
             self.form.button_play_record.setEnabled(True)
         else:
             self.form.button_delete_record.setEnabled(False)
             self.form.button_play_record.setEnabled(False)
+
+        self.form.label_bottom.setText("")
 
     def setup_button(self):
         #save
@@ -118,7 +130,6 @@ class Browser(QDialog):
         def is_null(textbox):
             return textbox.displayText().strip() == "" 
 
-
         if is_null(self.form.text_vocabulary):
             QMessageBox.critical(self, "Lỗi", "Bạn chưa điền Từ mới", QMessageBox.Ok)
             return  
@@ -131,26 +142,48 @@ class Browser(QDialog):
             QMessageBox.critical(self, "Lỗi", "Bạn chưa điền Dịch nghĩa", QMessageBox.Ok)
             return
 
+        if not utils.is_invalid_string(self.form.text_vocabulary.displayText()):
+            self.form.label_bottom.setText("<p style='color:red'>Kí tự không hợp lệ `~!@#$%^&*()+=_<>?/\|;</p>")
+            self.form.text_vocabulary.setFocus()
+            return
+        if not utils.is_invalid_string(self.form.text_phonetic.displayText()):
+            self.form.label_bottom.setText("<p style='color:red'>Kí tự không hợp lệ `~!@#$%^&*()+=_<>?/\|;</p>")
+            self.form.text_phonetic.setFocus()
+            return
+        if not utils.is_invalid_string(self.form.text_hint.displayText()):
+            self.form.label_bottom.setText("<p style='color:red'>Kí tự không hợp lệ `~!@#$%^&*()+=_<>?/\|;</p>")
+            self.form.text_hint.setFocus()
+            return
+        if not utils.is_invalid_string(self.form.text_definition.displayText()):
+            self.form.label_bottom.setText("<p style='color:red'>Kí tự không hợp lệ `~!@#$%^&*()+=_<>?/\|;</p>")
+            self.form.text_definition.setFocus()
+            return
+        if not utils.is_invalid_string(self.form.text_tag.displayText()):
+            self.form.label_bottom.setText("<p style='color:red'>Kí tự không hợp lệ `~!@#$%^&*()+=_<>?/\|;</p>")
+            self.form.text_tag.setFocus()            
+            return
+        self.form.label_bottom.setText("")
+
         self.current_row = self.form.tableView.currentIndex().row()
         current_index = self.form.tableView.currentIndex().row()
         self.model.setData(
             self.model.index(self.current_row, self.model.fieldIndex("vocabulary")),
-            self.form.text_vocabulary.displayText())
+            utils.format_string(self.form.text_vocabulary.displayText()))
         self.model.setData(
             self.model.index(self.current_row, self.model.fieldIndex("category")),
-            self.form.combobox_category.currentText())
+            utils.format_string(self.form.combobox_category.currentText()))
         self.model.setData(
             self.model.index(self.current_row, self.model.fieldIndex("phonetic")),
-            self.form.text_phonetic.displayText())
+            utils.format_string(self.form.text_phonetic.displayText()))
         self.model.setData(
             self.model.index(self.current_row, self.model.fieldIndex("hint")),
-            self.form.text_hint.displayText())
+            utils.format_string(self.form.text_hint.displayText()))
         self.model.setData(
             self.model.index(self.current_row, self.model.fieldIndex("definition")),
-            self.form.text_definition.displayText())
+            utils.format_string(self.form.text_definition.displayText()))
         self.model.setData(
             self.model.index(self.current_row, self.model.fieldIndex("tag")),
-            self.form.text_tag.displayText())
+            utils.format_string(self.form.text_tag.displayText()))
         self.model.setData(
             self.model.index(self.current_row, self.model.fieldIndex("picture_name")),
             self.picture_name)
@@ -158,6 +191,19 @@ class Browser(QDialog):
             self.model.index(self.current_row, self.model.fieldIndex("record_name")),
             self.record_name)
         
+        for file in self.pics:
+            if file != self.picture_name:
+                try:
+                    os.remove(os.path.join(self.controller.media_folder_path, file))
+                except: 
+                    print("File " + file + "not found")
+        for file in self.recs:
+            if file != self.record_name:
+                try:
+                    os.remove(os.path.join(self.controller.media_folder_path, file))
+                except:
+                    print("File " + file + " not found")
+
         self.model.submitAll()
         self.form.tableView.setCurrentIndex(self.model.index(self.current_row, 0))
         print("Saved " + self.form.text_vocabulary.displayText())
@@ -170,6 +216,9 @@ class Browser(QDialog):
             QMessageBox.critical(self, "Lỗi", "Bạn chưa điền Từ khóa", QMessageBox.Ok)
             return
         self.model = result
+        #self.model.select()
+        self.form.tableView.setModel(self.model)
+        self.form.tableView.selectionModel()
         self.form.tableView.setCurrentIndex(self.model.index(0,0))
     
     def choose_picture(self):
@@ -198,21 +247,13 @@ class Browser(QDialog):
             
             #delete before file
             if picture_before:
-                try:
-                    os.remove(os.path.join(self.controller.media_folder_path, picture_name_before))
-                    print("delete", picture_name_before)
-                except:
-                    print("File " + picture_name_before + " not found")
+                self.pics.append(picture_before)
 
     def delete_picture(self):
         if self.picture_name != "":
             self.form.button_delete_picture.setEnabled(False)
             self.form.picture.clear()
-            try:
-                os.remove(os.path.join(self.controller.media_folder_path, self.picture_name))
-                print("Deleted", self.picture_name)
-            except:
-                print("File " + self.picture_name + " not found")
+            self.pics.append(self.picture_name)
 
             self.picture_name = ""
 
@@ -226,7 +267,7 @@ class Browser(QDialog):
             self.form.button_play_record.setEnabled(True)
             
             if recorded_before:
-                os.remove(os.path.join(self.controller.media_folder_path, recorded_file_name))
+                self.recs.append(recorded_before)
                 
 
     def play_record(self):
@@ -237,18 +278,31 @@ class Browser(QDialog):
         if self.record_name != "":            
             self.form.button_delete_record.setEnabled(False)
             self.form.button_play_record.setEnabled(False)
-            try:
-                os.remove(os.path.join(self.controller.media_folder_path,self.record_name))
-                print("Deleted", self.record_name)
-            except:
-                print("File " + self.record_name + " not found")
+            self.recs.append(self.record_name)
             self.record_name = ""
     
     def button_discard_clicked(self):
+        self.form.label_bottom.setText("")
+        #restore info
+        for file in self.pics:
+            if file != self.last_pic:
+                try:
+                    os.remove(os.path.join(self.controller.media_folder_path, file))
+                except:
+                    print("File " + file + " not found")
+
+        for file in self.recs:
+            if file != self.last_rec:
+                try:
+                    os.remove(os.path.join(self.controller.media_folder_path, file))
+                except:
+                    print("File " + file + " not found")
+
         index = self.form.tableView.currentIndex()
         self.on_row_changed(index, index)
 
     def delete_word(self):
+        self.form.label_bottom.setText("")
         temp_word = self.form.text_vocabulary.displayText()
         delete_dialog = QMessageBox(self)
         txt = "Bạn có chắc chắn xóa " + temp_word + "?"

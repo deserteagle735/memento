@@ -10,7 +10,10 @@ class Word(object):
                 definition="test",
                 tag = "",
                 picture_name = "",
-                record_name = ""):
+                record_name = "",
+                level= 0,
+                met= 0,
+                correct= 0):
         self.id = id
         self.vocabulary = vocabulary
         self.category = category
@@ -20,6 +23,9 @@ class Word(object):
         self.tag = tag
         self.picture_name = picture_name
         self.record_name = record_name
+        self.level = level
+        self.met = met
+        self.correct = correct
     
     
 

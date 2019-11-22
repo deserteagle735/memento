@@ -42,7 +42,9 @@ class MementoMainWindow(QMainWindow):
     def button_settings_clicked(self):
         interface.dialog.open_dialog("settings", self.controller)
 
-    
+    def closeEvent(self, event):
+        self.controller.db.close()
+        self.close()
  
 
     

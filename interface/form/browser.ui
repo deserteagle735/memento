@@ -74,14 +74,28 @@
             </size>
            </property>
            <property name="styleSheet">
-            <string notr="true">border-radius:10px;
-border:2px solid gray;
-padding: 0 8px;</string>
+            <string notr="true">QLineEdit{
+border-radius:10px;
+border:1px solid gray;
+padding: 0 8px;
+}
+
+QLineEdit:focus
+{
+    border: 1px solid #006080;
+}</string>
            </property>
           </widget>
          </item>
          <item row="1" column="2">
           <widget class="QPushButton" name="button_search">
+           <property name="styleSheet">
+            <string notr="true">
+
+QPushButton:focus{
+border: 1px solid #006080;
+}</string>
+           </property>
            <property name="text">
             <string/>
            </property>
@@ -90,14 +104,14 @@ padding: 0 8px;</string>
              <normaloff>:/resource/search.png</normaloff>:/resource/search.png</iconset>
            </property>
            <property name="autoDefault">
-            <bool>false</bool>
+            <bool>true</bool>
            </property>
           </widget>
          </item>
          <item row="0" column="1">
           <widget class="QComboBox" name="comboBox_field">
            <property name="styleSheet">
-            <string notr="true">QComboBox{border: 2px solid gray;
+            <string notr="true">QComboBox{border: 1px solid gray;
 border-radius:10px; 
 padding: 1px 18px 1px 3px;
 min-width: 6em;
@@ -115,6 +129,10 @@ QComboBox::drop-down {
     border-bottom-right-radius: 3px;
 }
 QComboBox::down-arrow{image: url(:/resource/drop-down-arrow.png);}
+
+QComboBox:focus{
+border: 1px solid #006080;
+}
 
 </string>
            </property>
@@ -216,7 +234,7 @@ QComboBox::down-arrow{image: url(:/resource/drop-down-arrow.png);}
          <item row="1" column="1">
           <widget class="QComboBox" name="combobox_category">
            <property name="styleSheet">
-            <string notr="true">QComboBox{border: 2px solid gray;
+            <string notr="true">QComboBox{border: 1px solid gray;
 border-radius:10px; 
 padding: 1px 18px 1px 3px;
 min-width: 6em;
@@ -234,6 +252,10 @@ QComboBox::drop-down {
     border-bottom-right-radius: 3px;
 }
 QComboBox::down-arrow{image: url(:/resource/drop-down-arrow.png);}
+
+QComboBox:focus{
+border: 1px solid #006080;
+}
 
 </string>
            </property>
@@ -287,18 +309,32 @@ QComboBox::down-arrow{image: url(:/resource/drop-down-arrow.png);}
          <item row="3" column="0">
           <widget class="QLineEdit" name="text_phonetic">
            <property name="styleSheet">
-            <string notr="true">border-radius:10px;
-border:2px solid gray;
-padding: 0 8px;</string>
+            <string notr="true">QLineEdit{
+border-radius:10px;
+border:1px solid gray;
+padding: 0 8px;
+}
+
+QLineEdit:focus
+{
+    border: 1px solid #006080;
+}</string>
            </property>
           </widget>
          </item>
          <item row="3" column="1">
           <widget class="QLineEdit" name="text_hint">
            <property name="styleSheet">
-            <string notr="true">border-radius:10px;
-border:2px solid gray;
-padding: 0 8px;</string>
+            <string notr="true">QLineEdit{
+border-radius:10px;
+border:1px solid gray;
+padding: 0 8px;
+}
+
+QLineEdit:focus
+{
+    border: 1px solid #006080;
+}</string>
            </property>
           </widget>
          </item>
@@ -340,68 +376,88 @@ padding: 0 8px;</string>
            <item row="1" column="1">
             <widget class="QPushButton" name="button_delete_picture">
              <property name="styleSheet">
-              <string notr="true">border-radius:10px;
-border:2px solid gray;
+              <string notr="true">QPushButton{border-radius:10px;
+border:1px solid gray;
 padding: 0 8px;
- background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #f6f7fa, stop: 1 #dadbde);</string>
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}
+
+QPushButton:focus{
+border: 1px solid #006080;
+}</string>
              </property>
              <property name="text">
               <string>Xóa</string>
              </property>
              <property name="autoDefault">
-              <bool>false</bool>
+              <bool>true</bool>
              </property>
             </widget>
            </item>
            <item row="4" column="1">
             <widget class="QPushButton" name="button_delete_record">
              <property name="styleSheet">
-              <string notr="true">border-radius:10px;
-border:2px solid gray;
+              <string notr="true">QPushButton{border-radius:10px;
+border:1px solid gray;
 padding: 0 8px;
- background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #f6f7fa, stop: 1 #dadbde);</string>
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}
+
+QPushButton:focus{
+border: 1px solid #006080;
+}</string>
              </property>
              <property name="text">
               <string>Xóa</string>
              </property>
              <property name="autoDefault">
-              <bool>false</bool>
+              <bool>true</bool>
              </property>
             </widget>
            </item>
            <item row="4" column="0">
             <widget class="QPushButton" name="button_record">
              <property name="styleSheet">
-              <string notr="true">border-radius:10px;
-border:2px solid gray;
+              <string notr="true">QPushButton{border-radius:10px;
+border:1px solid gray;
 padding: 0 8px;
- background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #f6f7fa, stop: 1 #dadbde);</string>
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}
+
+QPushButton:focus{
+border: 1px solid #006080;
+}</string>
              </property>
              <property name="text">
               <string>Bắt đầu</string>
              </property>
              <property name="autoDefault">
-              <bool>false</bool>
+              <bool>true</bool>
              </property>
             </widget>
            </item>
            <item row="5" column="0">
             <widget class="QPushButton" name="button_play_record">
              <property name="styleSheet">
-              <string notr="true">border-radius:10px;
-border:2px solid gray;
+              <string notr="true">QPushButton{border-radius:10px;
+border:1px solid gray;
 padding: 0 8px;
- background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #f6f7fa, stop: 1 #dadbde);</string>
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}
+
+QPushButton:focus{
+border: 1px solid #006080;
+}</string>
              </property>
              <property name="text">
               <string>Nghe lại</string>
              </property>
              <property name="autoDefault">
-              <bool>false</bool>
+              <bool>true</bool>
              </property>
             </widget>
            </item>
@@ -418,9 +474,16 @@ padding: 0 8px;
            <item row="7" column="0" colspan="2">
             <widget class="QLineEdit" name="text_tag">
              <property name="styleSheet">
-              <string notr="true">border-radius:10px;
-border:2px solid gray;
-padding: 0 8px;</string>
+              <string notr="true">QLineEdit{
+border-radius:10px;
+border:1px solid gray;
+padding: 0 8px;
+}
+
+QLineEdit:focus
+{
+    border: 1px solid #006080;
+}</string>
              </property>
             </widget>
            </item>
@@ -447,17 +510,22 @@ padding: 0 8px;</string>
            <item row="1" column="0">
             <widget class="QPushButton" name="button_choose_picture">
              <property name="styleSheet">
-              <string notr="true">border-radius:10px;
-border:2px solid gray;
+              <string notr="true">QPushButton{border-radius:10px;
+border:1px solid gray;
 padding: 0 8px;
- background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #f6f7fa, stop: 1 #dadbde);</string>
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}
+
+QPushButton:focus{
+border: 1px solid #006080;
+}</string>
              </property>
              <property name="text">
               <string>Chọn ảnh</string>
              </property>
              <property name="autoDefault">
-              <bool>false</bool>
+              <bool>true</bool>
              </property>
             </widget>
            </item>
@@ -493,9 +561,16 @@ padding: 0 8px;
          <item row="6" column="0" colspan="2">
           <widget class="QLineEdit" name="text_definition">
            <property name="styleSheet">
-            <string notr="true">border-radius:10px;
-border:2px solid gray;
-padding: 0 8px;</string>
+            <string notr="true">QLineEdit{
+border-radius:10px;
+border:1px solid gray;
+padding: 0 8px;
+}
+
+QLineEdit:focus
+{
+    border: 1px solid #006080;
+}</string>
            </property>
           </widget>
          </item>
@@ -525,13 +600,20 @@ padding: 0 8px;</string>
          <item row="1" column="0">
           <widget class="QLineEdit" name="text_vocabulary">
            <property name="styleSheet">
-            <string notr="true">border-radius:10px;
-border:2px solid gray;
-padding: 0 8px;</string>
+            <string notr="true">QLineEdit{
+border-radius:10px;
+border:1px solid gray;
+padding: 0 8px;
+}
+
+QLineEdit:focus
+{
+    border: 1px solid #006080;
+}</string>
            </property>
           </widget>
          </item>
-         <item row="8" column="0" colspan="2">
+         <item row="9" column="0" colspan="2">
           <widget class="QWidget" name="widget_3" native="true">
            <layout class="QGridLayout" name="gridLayout_13">
             <property name="leftMargin">
@@ -552,11 +634,16 @@ padding: 0 8px;</string>
                <string>F2</string>
               </property>
               <property name="styleSheet">
-               <string notr="true">border-radius:10px;
-border:2px solid gray;
+               <string notr="true">QPushButton{border-radius:10px;
+border:1px solid gray;
 padding: 0 8px;
 background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #f6f7fa, stop: 1 #dadbde);</string>
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}
+
+QPushButton:focus{
+border: 1px solid #006080;
+}</string>
               </property>
               <property name="text">
                <string>Hủy</string>
@@ -565,7 +652,7 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
                <string>F2</string>
               </property>
               <property name="autoDefault">
-               <bool>false</bool>
+               <bool>true</bool>
               </property>
              </widget>
             </item>
@@ -575,11 +662,16 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
                <string>F3</string>
               </property>
               <property name="styleSheet">
-               <string notr="true">border-radius:10px;
-border:2px solid gray;
+               <string notr="true">QPushButton{border-radius:10px;
+border:1px solid gray;
 padding: 0 8px;
- background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #f6f7fa, stop: 1 #dadbde);</string>
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}
+
+QPushButton:focus{
+border: 1px solid #006080;
+}</string>
               </property>
               <property name="text">
                <string>Xóa</string>
@@ -588,7 +680,7 @@ padding: 0 8px;
                <string>F3</string>
               </property>
               <property name="autoDefault">
-               <bool>false</bool>
+               <bool>true</bool>
               </property>
              </widget>
             </item>
@@ -598,12 +690,19 @@ padding: 0 8px;
                <string>F1</string>
               </property>
               <property name="styleSheet">
-               <string notr="true">border-radius:10px;
-border:2px solid #3f8cc8;
+               <string notr="true">QPushButton{border-radius:10px;
+border:1px solid #3f8cc8;
 padding: 0 8px;
 color: rgb(255, 255, 255);
 background-color: qlineargradient(spread:pad, x1:0.494, y1:0.989, x2:0.494, y2:0.011, stop:0.863158 rgba(23, 132, 255, 250), stop:1 rgba(255, 255, 255, 255));
-</string>
+}
+QPushButton:focus{
+border: 1px solid rgb(0, 255, 255);
+}
+QPushButton:disabled{
+background-color: rgb(195, 203, 218);
+border:1px solid rgb(195, 203, 218);
+}</string>
               </property>
               <property name="text">
                <string>Lưu</string>
@@ -612,7 +711,7 @@ background-color: qlineargradient(spread:pad, x1:0.494, y1:0.989, x2:0.494, y2:0
                <string>F1</string>
               </property>
               <property name="autoDefault">
-               <bool>false</bool>
+               <bool>true</bool>
               </property>
               <property name="flat">
                <bool>false</bool>
@@ -623,6 +722,16 @@ background-color: qlineargradient(spread:pad, x1:0.494, y1:0.989, x2:0.494, y2:0
              <widget class="QWidget" name="widget_11" native="true"/>
             </item>
            </layout>
+          </widget>
+         </item>
+         <item row="8" column="0" colspan="2">
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string/>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
           </widget>
          </item>
         </layout>

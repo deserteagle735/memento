@@ -42,102 +42,128 @@
       <attribute name="title">
        <string>Kiểm tra</string>
       </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_2">
-       <item>
-        <layout class="QGridLayout" name="gridLayout">
-         <item row="0" column="0">
-          <widget class="QLabel" name="label">
-           <property name="text">
-            <string>Tìm từ theo</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1" colspan="2">
-          <widget class="QComboBox" name="combobox_field">
-           <item>
-            <property name="text">
-             <string>Tất cả</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Thẻ</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Thêm hôm nay</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="label_2">
-           <property name="text">
-            <string>Mức độ câu hỏi</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="QSpinBox" name="spinbox_test_level">
-           <property name="buttonSymbols">
-            <enum>QAbstractSpinBox::UpDownArrows</enum>
-           </property>
-           <property name="minimum">
-            <number>1</number>
-           </property>
-           <property name="maximum">
-            <number>7</number>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="2">
-          <spacer name="horizontalSpacer_2">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="2" column="0">
-          <widget class="QLabel" name="label_3">
-           <property name="text">
-            <string>Mức độ gợi ý</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1">
-          <widget class="QSpinBox" name="spinbox_hint_level">
-           <property name="minimum">
-            <number>1</number>
-           </property>
-           <property name="maximum">
-            <number>4</number>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="2">
-          <spacer name="horizontalSpacer_3">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="1" column="2">
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>167</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
        </item>
-       <item>
+       <item row="4" column="2">
+        <spacer name="horizontalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>167</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Mức độ gợi ý</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1" colspan="2">
+        <widget class="QComboBox" name="combobox_field">
+         <item>
+          <property name="text">
+           <string>Tất cả</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Thẻ</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Thêm hôm nay</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>Mức độ câu hỏi</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>Số lượng từ mỗi lần</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <spacer name="horizontalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>167</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="6" column="0" colspan="3">
         <widget class="QTextBrowser" name="textBrowser"/>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Tìm từ theo</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QSpinBox" name="spinbox_test_level">
+         <property name="buttonSymbols">
+          <enum>QAbstractSpinBox::UpDownArrows</enum>
+         </property>
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>7</number>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QSpinBox" name="spinbox_hint_level">
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>4</number>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QSpinBox" name="spinbox_number_of_word">
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>50</number>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -156,34 +182,52 @@
      <item row="0" column="2">
       <widget class="QPushButton" name="button_cancel">
        <property name="styleSheet">
-        <string notr="true">border-radius:10px;
-border:2px solid gray;
+        <string notr="true">QPushButton{border-radius:10px;
+border:1px solid gray;
 padding: 0 8px;
 background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
-                                      stop: 0 #f6f7fa, stop: 1 #dadbde);</string>
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}
+
+QPushButton:focus{
+border: 1px solid #006080;
+}</string>
        </property>
        <property name="text">
         <string>Hủy</string>
        </property>
        <property name="autoDefault">
-        <bool>false</bool>
+        <bool>true</bool>
+       </property>
+       <property name="default">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
      <item row="0" column="1">
       <widget class="QPushButton" name="button_save">
        <property name="styleSheet">
-        <string notr="true">border-radius:10px;
-border:2px solid #3f8cc8;
+        <string notr="true">QPushButton{border-radius:10px;
+border:1px solid #3f8cc8;
 padding: 0 8px;
 color: rgb(255, 255, 255);
 background-color: qlineargradient(spread:pad, x1:0.494, y1:0.989, x2:0.494, y2:0.011, stop:0.863158 rgba(23, 132, 255, 250), stop:1 rgba(255, 255, 255, 255));
-</string>
+}
+QPushButton:focus{
+border: 1px solid rgb(0, 255, 255);
+}
+QPushButton:disabled{
+background-color: rgb(195, 203, 218);
+border:1px solid rgb(195, 203, 218);
+}</string>
        </property>
        <property name="text">
         <string>Lưu</string>
        </property>
        <property name="autoDefault">
+        <bool>true</bool>
+       </property>
+       <property name="default">
         <bool>false</bool>
        </property>
       </widget>
@@ -193,13 +237,14 @@ background-color: qlineargradient(spread:pad, x1:0.494, y1:0.989, x2:0.494, y2:0
   </layout>
  </widget>
  <tabstops>
+  <tabstop>tab</tabstop>
   <tabstop>combobox_field</tabstop>
   <tabstop>spinbox_test_level</tabstop>
   <tabstop>spinbox_hint_level</tabstop>
+  <tabstop>spinbox_number_of_word</tabstop>
   <tabstop>textBrowser</tabstop>
   <tabstop>button_save</tabstop>
   <tabstop>button_cancel</tabstop>
-  <tabstop>tab</tabstop>
  </tabstops>
  <resources>
   <include location="../../resource.qrc"/>

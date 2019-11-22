@@ -6,6 +6,7 @@ def record_audio(parent, media_folder):
 
     dialog_record = QMessageBox(parent)
     dialog_record.setWindowTitle("Memento")
+    dialog_record.setStyleSheet("font: 12pt \"SF Pro Display\";")
     #icon
     dialog_record.setIconPixmap(QPixmap(":/resource/media-record.png"))
     #button

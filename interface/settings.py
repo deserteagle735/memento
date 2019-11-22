@@ -71,6 +71,7 @@ class Settings(QDialog):
         self.form.combobox_field.setCurrentIndex(self.config["field"])
         self.form.spinbox_test_level.setValue(self.config["test"])
         self.form.spinbox_hint_level.setValue(self.config["hint"])
+        self.form.spinbox_number_of_word.setValue(self.config["num"])
         self.show()
 
     def setup_dialog(self):
@@ -97,6 +98,7 @@ class Settings(QDialog):
         self.config["field"] = self.form.combobox_field.currentIndex()
         self.config["test"] = self.form.spinbox_test_level.value()
         self.config["hint"] = self.form.spinbox_hint_level.value()
+        self.config["num"] = self.form.spinbox_number_of_word.value()
 
         with open(file, "w") as config_file:
             json.dump(self.config, config_file)

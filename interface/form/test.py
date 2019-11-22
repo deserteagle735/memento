@@ -14,7 +14,7 @@ class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
         Dialog.setWindowModality(QtCore.Qt.ApplicationModal)
-        Dialog.resize(400, 448)
+        Dialog.resize(400, 441)
         font = QtGui.QFont()
         font.setFamily("SF Pro Display")
         font.setPointSize(12)
@@ -157,6 +157,22 @@ class Ui_Dialog(object):
         self.verticalLayout_9.addLayout(self.verticalLayout_8)
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
+        self.button_show_answer = QtWidgets.QPushButton(Dialog)
+        self.button_show_answer.setStyleSheet("QPushButton{border-radius:10px;\n"
+"border:1px solid gray;\n"
+"padding: 0 8px;\n"
+"background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}\n"
+"\n"
+"QPushButton:focus{\n"
+"border: 1px solid #006080;\n"
+"}")
+        self.button_show_answer.setIconSize(QtCore.QSize(20, 20))
+        self.button_show_answer.setAutoDefault(True)
+        self.button_show_answer.setFlat(False)
+        self.button_show_answer.setObjectName("button_show_answer")
+        self.horizontalLayout_3.addWidget(self.button_show_answer)
         self.button_play_record = QtWidgets.QPushButton(Dialog)
         self.button_play_record.setStyleSheet("QPushButton{border-radius:10px;\n"
 "border:1px solid gray;\n"
@@ -169,13 +185,10 @@ class Ui_Dialog(object):
 "border: 1px solid #006080;\n"
 "}")
         self.button_play_record.setIconSize(QtCore.QSize(20, 20))
-        self.button_play_record.setAutoDefault(False)
+        self.button_play_record.setAutoDefault(True)
         self.button_play_record.setFlat(False)
         self.button_play_record.setObjectName("button_play_record")
         self.horizontalLayout_3.addWidget(self.button_play_record)
-        self.widget = QtWidgets.QWidget(Dialog)
-        self.widget.setObjectName("widget")
-        self.horizontalLayout_3.addWidget(self.widget)
         self.button_check = QtWidgets.QPushButton(Dialog)
         self.button_check.setEnabled(True)
         self.button_check.setStyleSheet("QPushButton{border-radius:10px;\n"
@@ -187,8 +200,11 @@ class Ui_Dialog(object):
 "QPushButton:focus{\n"
 "border: 1px solid rgb(0, 255, 255);\n"
 "}\n"
-"")
-        self.button_check.setAutoDefault(False)
+"QPushButton:disabled{\n"
+"background-color: rgb(195, 203, 218);\n"
+"border:1px solid rgb(195, 203, 218);\n"
+"}")
+        self.button_check.setAutoDefault(True)
         self.button_check.setDefault(True)
         self.button_check.setObjectName("button_check")
         self.horizontalLayout_3.addWidget(self.button_check)
@@ -204,21 +220,22 @@ class Ui_Dialog(object):
 "QPushButton:focus{\n"
 "border: 1px solid #006080;\n"
 "}")
-        self.button_next.setAutoDefault(False)
+        self.button_next.setAutoDefault(True)
         self.button_next.setObjectName("button_next")
         self.horizontalLayout_3.addWidget(self.button_next)
         self.verticalLayout_9.addLayout(self.horizontalLayout_3)
 
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
-        Dialog.setTabOrder(self.text_answer, self.button_check)
+        Dialog.setTabOrder(self.text_answer, self.button_show_answer)
+        Dialog.setTabOrder(self.button_show_answer, self.button_play_record)
+        Dialog.setTabOrder(self.button_play_record, self.button_check)
         Dialog.setTabOrder(self.button_check, self.button_next)
-        Dialog.setTabOrder(self.button_next, self.button_play_record)
-        Dialog.setTabOrder(self.button_play_record, self.text_vocabulary)
-        Dialog.setTabOrder(self.text_vocabulary, self.text_definition)
-        Dialog.setTabOrder(self.text_definition, self.text_tag)
-        Dialog.setTabOrder(self.text_tag, self.text_phonetic)
+        Dialog.setTabOrder(self.button_next, self.text_phonetic)
         Dialog.setTabOrder(self.text_phonetic, self.text_hint)
+        Dialog.setTabOrder(self.text_hint, self.text_tag)
+        Dialog.setTabOrder(self.text_tag, self.text_definition)
+        Dialog.setTabOrder(self.text_definition, self.text_vocabulary)
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
@@ -230,6 +247,7 @@ class Ui_Dialog(object):
         self.label_5.setText(_translate("Dialog", " Dịch nghĩa"))
         self.label_4.setText(_translate("Dialog", " Từ mới"))
         self.label_top.setText(_translate("Dialog", "Đáp án của bạn là"))
+        self.button_show_answer.setText(_translate("Dialog", "Đáp án"))
         self.button_play_record.setText(_translate("Dialog", "Nghe"))
         self.button_check.setText(_translate("Dialog", "Kiểm tra"))
         self.button_next.setText(_translate("Dialog", "Tiếp theo"))

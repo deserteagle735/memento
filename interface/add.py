@@ -1,11 +1,13 @@
 import interface
-from interface.qt import *
-from memento.db import DB
-from memento.word import Word
 import interface.audio
 import shutil
 import time
 import datetime
+
+from interface.qt import *
+from memento import utils
+from memento.db import DB
+from memento.word import Word
 
 class Add(QDialog):
     def __init__(self, controller):
@@ -141,17 +143,39 @@ class Add(QDialog):
         if is_null(self.form.text_definition):
             QMessageBox.critical(self, "Lỗi", "Bạn chưa điền Dịch nghĩa", QMessageBox.Ok)
             return
-        
+
+        if not utils.is_invalid_string(self.form.text_vocabulary.displayText()):
+            self.form.label_bottom.setText("<p style='color:red'>Kí tự không hợp lệ `~!@#$%^&*()+=_<>?/\|;</p>")
+            self.form.text_vocabulary.setFocus()
+            return
+        if not utils.is_invalid_string(self.form.text_phonetic.displayText()):
+            self.form.label_bottom.setText("<p style='color:red'>Kí tự không hợp lệ `~!@#$%^&*()+=_<>?/\|;</p>")
+            self.form.text_phonetic.setFocus()
+            return
+        if not utils.is_invalid_string(self.form.text_hint.displayText()):
+            self.form.label_bottom.setText("<p style='color:red'>Kí tự không hợp lệ `~!@#$%^&*()+=_<>?/\|;</p>")
+            self.form.text_hint.setFocus()
+            return
+        if not utils.is_invalid_string(self.form.text_definition.displayText()):
+            self.form.label_bottom.setText("<p style='color:red'>Kí tự không hợp lệ `~!@#$%^&*()+=_<>?/\|;</p>")
+            self.form.text_definition.setFocus()
+            return
+        if not utils.is_invalid_string(self.form.text_tag.displayText()):
+            self.form.label_bottom.setText("<p style='color:red'>Kí tự không hợp lệ `~!@#$%^&*()+=_<>?/\|;</p>")
+            self.form.text_tag.setFocus()            
+            return
+        self.form.label_bottom.setText("")
+
         word = Word(
             id= None,
-            vocabulary= self.form.text_vocabulary.displayText().strip(),
-            category= self.form.combobox_category.currentText(),
-            phonetic= self.form.text_phonetic.displayText().strip(),
-            hint= self.form.text_hint.displayText().strip(),
-            definition= self.form.text_definition.displayText().strip(),
-            tag= self.form.text_tag.displayText().strip(),
-            picture_name= self.picture_name.strip(),
-            record_name=self.record_name.strip()
+            vocabulary= utils.format_string(self.form.text_vocabulary.displayText()),
+            category= utils.format_string(self.form.combobox_category.currentText()),
+            phonetic= utils.format_string(self.form.text_phonetic.displayText()),
+            hint= utils.format_string(self.form.text_hint.displayText()),
+            definition= utils.format_string(self.form.text_definition.displayText()),
+            tag= utils.format_string(self.form.text_tag.displayText()),
+            picture_name= self.picture_name,
+            record_name= self.record_name
         )
 
         self.controller.db.add_word(word)

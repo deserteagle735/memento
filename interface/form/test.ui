@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>448</height>
+    <height>441</height>
    </rect>
   </property>
   <property name="font">
@@ -276,6 +276,37 @@ QLineEdit:focus
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
+      <widget class="QPushButton" name="button_show_answer">
+       <property name="styleSheet">
+        <string notr="true">QPushButton{border-radius:10px;
+border:1px solid gray;
+padding: 0 8px;
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #f6f7fa, stop: 1 #dadbde);
+}
+
+QPushButton:focus{
+border: 1px solid #006080;
+}</string>
+       </property>
+       <property name="text">
+        <string>Đáp án</string>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>20</width>
+         <height>20</height>
+        </size>
+       </property>
+       <property name="autoDefault">
+        <bool>true</bool>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="button_play_record">
        <property name="styleSheet">
         <string notr="true">QPushButton{border-radius:10px;
@@ -299,15 +330,12 @@ border: 1px solid #006080;
         </size>
        </property>
        <property name="autoDefault">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="flat">
         <bool>false</bool>
        </property>
       </widget>
-     </item>
-     <item>
-      <widget class="QWidget" name="widget" native="true"/>
      </item>
      <item>
       <widget class="QPushButton" name="button_check">
@@ -324,13 +352,16 @@ background-color: qlineargradient(spread:pad, x1:0.494, y1:0.989, x2:0.494, y2:0
 QPushButton:focus{
 border: 1px solid rgb(0, 255, 255);
 }
-</string>
+QPushButton:disabled{
+background-color: rgb(195, 203, 218);
+border:1px solid rgb(195, 203, 218);
+}</string>
        </property>
        <property name="text">
         <string>Kiểm tra</string>
        </property>
        <property name="autoDefault">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="default">
         <bool>true</bool>
@@ -358,7 +389,7 @@ border: 1px solid #006080;
         <string>Tiếp theo</string>
        </property>
        <property name="autoDefault">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -368,14 +399,15 @@ border: 1px solid #006080;
  </widget>
  <tabstops>
   <tabstop>text_answer</tabstop>
+  <tabstop>button_show_answer</tabstop>
+  <tabstop>button_play_record</tabstop>
   <tabstop>button_check</tabstop>
   <tabstop>button_next</tabstop>
-  <tabstop>button_play_record</tabstop>
-  <tabstop>text_vocabulary</tabstop>
-  <tabstop>text_definition</tabstop>
-  <tabstop>text_tag</tabstop>
   <tabstop>text_phonetic</tabstop>
   <tabstop>text_hint</tabstop>
+  <tabstop>text_tag</tabstop>
+  <tabstop>text_definition</tabstop>
+  <tabstop>text_vocabulary</tabstop>
  </tabstops>
  <resources>
   <include location="../../resource.qrc"/>

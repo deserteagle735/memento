@@ -1,13 +1,20 @@
-from interface.qt import *
 import interface
 import interface.audio
-from memento.word import Word
-from difflib import SequenceMatcher
 import json
 import os
+import random
+
+from difflib import SequenceMatcher
+from interface.qt import *
+from memento import utils
+from memento.word import Word
 
 MAX_TEST_LEVEL = 7
 MAX_HINT_LEVEL = 4
+MAX_LEVEL = 5
+RATIO = [4, 2, 2, 1, 1]
+TOTAL = 10
+
 
 class Test(QDialog):
     
@@ -16,7 +23,8 @@ class Test(QDialog):
         self.controller = controller
         self.picture_name = ""
         self.record_name = ""
-
+        self.is_correct_answer = False
+        self.learn_value = 0
         #Function base on test level
         self.show_function = [self.show_phonetic,
                 self.show_hint,
@@ -32,14 +40,22 @@ class Test(QDialog):
                 self.check_incorrect_character]
 
         self.config = self.load_config()
+        # if test by tag -> ask for tag
+        if self.config["field"] == 1:
+            self.close()
+
+        #quantity of word for each level
+        self.quantity = [int(RATIO[i] * self.config["num"] / TOTAL) for i in range(5)]
+        self.quantity[0] = self.config["num"] - sum([self.quantity[i] for i in range(4,0,-1)])
         self.setModal(True)
         self.setup_ui()   
         
         #get words
         self.words = self.get_words()
         self.current_index = 0
-        if (len(self.words) == 0):
-            pass
+        if (self.words == None):
+            QMessageBox.critical(self, "Không tìm thấy từ mới", "Memento không tìm thấy từ của bạn", QMessageBox.Ok)
+            self.close()
         else:
             self.show_word(self.words[self.current_index])
 
@@ -66,41 +82,105 @@ class Test(QDialog):
         self.form.button_play_record.clicked.connect(self.button_play_record_clicked)
         self.form.button_check.clicked.connect(self.button_check_clicked)
         self.form.button_next.clicked.connect(self.button_next_clicked)
+        self.form.button_show_answer.clicked.connect(self.button_show_answer_clicked)
 
         self.form.button_play_record.setDisabled(True)
-        self.form.button_next.setDisabled(True)
 
     def button_check_clicked(self):
         self.check_answer(self.words[self.current_index])
+        if self.is_correct_answer == True:
+            if self.learn_value == 0:
+                self.update_learn_data(self.words[self.current_index], True)
+            self.form.button_check.setDisabled(True)
+            self.form.button_show_answer.setDisabled(True)
+        else: 
+            self.learn_value = -1
+
+    def update_learn_data(self, word, correct=False):
+        self.controller.db.update_learn_data(word, correct)
 
     def button_next_clicked(self):
-        self.form.button_next.setDisabled(True)
-        self.current_index += 1
-        if self.current_index == len(self.words):
-            return
+        next_word = False
+        if self.is_correct_answer == False:
+            dialog_next = QMessageBox(self)
+            dialog_next.setStyleSheet("font: 12pt \"SF Pro Display\";")
+            dialog_next.setWindowTitle("Tiếp theo")
+            dialog_next.setInformativeText("""Bạn chưa trả lời đúng.\nBạn có chắc chắn muốn chuyến sang câu tiếp theo?""")
+            #icon
+            dialog_next.setIcon(QMessageBox.Icon(QMessageBox.Question))
+            #button
+            button_cancel = QPushButton("Hủy")
+            button_cancel.setDefault(True)
+            button_ok = QPushButton("Tiếp theo")
+            dialog_next.addButton(button_ok, QMessageBox.AcceptRole)
+            dialog_next.addButton(button_cancel, QMessageBox.RejectRole)
+            dialog_next.setEscapeButton(button_cancel)
+            result = dialog_next.exec_()
+            if result == QMessageBox.AcceptRole:
+                next_word = True
+                self.update_learn_data(self.words[self.current_index], False)
+            elif result == QMessageBox.RejectRole: 
+                next_word = False
         else:
-            self.form.button_play_record.setDisabled(True)
+            next_word = True
+        if next_word == True:
+            self.current_index += 1
+            if self.current_index == len(self.words):
+                QMessageBox.information(self, "Xong", "Bạn đã hoàn thành kiểm tra", QMessageBox.Ok)
+                self.close()
+            else:
+                self.form.button_play_record.setDisabled(True)
+                self.show_word(self.words[self.current_index])
+                self.form.text_answer.clear()
+                self.form.text_answer.setFocus()
 
     def button_play_record_clicked(self):
         if self.record_name != "":
             interface.audio.play_audio(self.controller.media_folder_path, self.record_name)
 
+    def button_show_answer_clicked(self):
+        dialog_show_answer = QMessageBox(self)
+        dialog_show_answer.setStyleSheet("font: 12pt \"SF Pro Display\";")
+        dialog_show_answer.setWindowTitle("Đáp")
+        dialog_show_answer.setInformativeText("""Bạn có muốn hiện đáp án?""")
+        #icon
+        dialog_show_answer.setIcon(QMessageBox.Icon(QMessageBox.Question))
+        #button
+        button_cancel = QPushButton("Hủy")
+        button_cancel.setDefault(True)
+        button_ok = QPushButton("Hiện đáp án")
+        dialog_show_answer.addButton(button_ok, QMessageBox.AcceptRole)
+        dialog_show_answer.addButton(button_cancel, QMessageBox.RejectRole)
+        dialog_show_answer.setEscapeButton(button_cancel)
+        result = dialog_show_answer.exec_()
+        if result == QMessageBox.AcceptRole:
+            txt = "<p style = 'color:green'>" + self.words[self.current_index].vocabulary +"</p>"
+            self.form.label_top.setText(txt)
+            self.form.label_bottom.setText("")
+            self.form.button_check.setDisabled(True)
+            self.form.button_play_record.setEnabled(True)
+            self.is_correct_answer = True
+            self.update_learn_data(self.words[self.current_index], True)
+
     #Retrieve word from database
     def get_words(self):
-         #test
-        w = Word(
-            id= 1,
-            vocabulary= "cat",
-            category="n - danh từ",
-            phonetic="két",
-            hint="meow meow",
-            definition= "con mèo",
-            tag= "động vật",
-            picture_name= "1574131646.859594.png",
-            record_name= "1574266730.578919.wav"
-        )
+        #test
+        # w = Word(
+        #     id= 1,
+        #     vocabulary= "cat",
+        #     category="n - danh từ",
+        #     phonetic="két",
+        #     hint="meow meow",
+        #     definition= "con mèo",
+        #     tag= "động vật",
+        #     picture_name= "1574131646.859594.png",
+        #     record_name= "1574266730.578919.wav"
+        # )
 
-        return [w]
+        # 0 = all, 1 = by tag , 2 = added today
+        words = self.controller.db.get_words(MAX_LEVEL, self.quantity, self.config["field"])
+        random.shuffle(words)
+        return words
 
     # Funtion to show word
     def show_phonetic(self, word):
@@ -110,7 +190,6 @@ class Test(QDialog):
         self.form.text_hint.setText(word.hint)
 
     def set_record(self, word):
-        self.record_name = word.record_name
         self.form.button_play_record.setEnabled(True)
 
     def show_encode_word1(self, word):
@@ -161,6 +240,14 @@ class Test(QDialog):
         for l in range(MAX_TEST_LEVEL-1, self.config["test"]-2, -1):
             self.show_function[l](word)
 
+        self.is_correct_answer = False
+        self.form.button_check.setEnabled(True)
+        self.form.button_show_answer.setEnabled(True)
+        self.form.label_top.setText("Đáp án của bạn là")
+        self.form.label_bottom.setText("")
+        self.learn_value = 0
+        self.record_name = word.record_name
+
     #Check base on hint level
     def check_incorrect_character(self, word, answer):
         if self.config["test"] > 6:
@@ -185,7 +272,7 @@ class Test(QDialog):
                 txt = "Xâu chung dài nhất là: " + answer[string_matcher.b:string_matcher.b + string_matcher.size]
                 self.form.label_top.setText(txt)                
         else:
-            #cho biết các chữ cái sai
+            #highlight incorrect character in red
             if string_matcher.size == 0:
                 txt = red(answer)
             else:
@@ -202,7 +289,7 @@ class Test(QDialog):
                             txt = "{}{}".format(txt, red(answer[i]))  
                 for i in range(string_matcher.b-1, -1, -1):
                     if string_matcher.a - string_matcher.b + i < 0:
-                        txt = "{}{}".format(red(answer[0:i]), txt)
+                        txt = "{}{}".format(red(answer[0:i+1]), txt)
                         break
                     else:
                         if voca[string_matcher.a - string_matcher.b + i] == answer[i]:
@@ -214,9 +301,8 @@ class Test(QDialog):
             print(txt)
 
     def check_record(self, word, answer):
-        if self.config["test"] > 4:
+        if self.config["test"] > 3:
             self.form.label_bottom.setText("Bạn nghe phát âm nhé")
-            self.record_name = word.record_name
             self.form.button_play_record.setEnabled(True)
 
     def check_nothing(self, word, answer):
@@ -226,29 +312,16 @@ class Test(QDialog):
 
     def check_answer(self, word):
 
-        def format_string(string):
-            #invalid = "!@#$%^&*\"\|<>?-+()"
-
-            result = string.strip()
-            if result == "":
-                return result
-            w = []
-            
-            for i in range(len(result)-1):
-                #if result[i] in invalid:
-                #    continue
-                if result[i] == " " and result[i+1] == " ":
-                    continue
-                w.append(result[i])
-
-            w.append(result[-1])
-            result = "".join(w)
-            return result
-
-        answer = format_string(self.form.text_answer.displayText())
+        self.form.label_top.setText("")
+        self.form.label_bottom.setText("")
+        answer = utils.format_string(self.form.text_answer.displayText())
+        if (answer == ""):            
+            self.form.label_bottom.setText("<p style='color:red'>Bạn chưa điền đáp án</p>")
+            return
         if answer == word.vocabulary:
             self.form.button_next.setEnabled(True)
             self.form.label_bottom.setText("<p style='color:green'>Chính xác")
+            self.is_correct_answer = True
             return
         else:
             self.form.label_bottom.setText("<p style='color:Red'>Chưa chính xác")

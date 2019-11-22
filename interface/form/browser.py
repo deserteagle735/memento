@@ -45,21 +45,33 @@ class Ui_Dialog(object):
         self.gridLayout.addWidget(self.label_3, 0, 0, 1, 1)
         self.text_search_box = QtWidgets.QLineEdit(self.layoutWidget)
         self.text_search_box.setMinimumSize(QtCore.QSize(430, 0))
-        self.text_search_box.setStyleSheet("border-radius:10px;\n"
-"border:2px solid gray;\n"
-"padding: 0 8px;")
+        self.text_search_box.setStyleSheet("QLineEdit{\n"
+"border-radius:10px;\n"
+"border:1px solid gray;\n"
+"padding: 0 8px;\n"
+"}\n"
+"\n"
+"QLineEdit:focus\n"
+"{\n"
+"    border: 1px solid #006080;\n"
+"}")
         self.text_search_box.setObjectName("text_search_box")
         self.gridLayout.addWidget(self.text_search_box, 1, 1, 1, 1)
         self.button_search = QtWidgets.QPushButton(self.layoutWidget)
+        self.button_search.setStyleSheet("\n"
+"\n"
+"QPushButton:focus{\n"
+"border: 1px solid #006080;\n"
+"}")
         self.button_search.setText("")
         icon1 = QtGui.QIcon()
         icon1.addPixmap(QtGui.QPixmap(":/resource/search.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.button_search.setIcon(icon1)
-        self.button_search.setAutoDefault(False)
+        self.button_search.setAutoDefault(True)
         self.button_search.setObjectName("button_search")
         self.gridLayout.addWidget(self.button_search, 1, 2, 1, 1)
         self.comboBox_field = QtWidgets.QComboBox(self.layoutWidget)
-        self.comboBox_field.setStyleSheet("QComboBox{border: 2px solid gray;\n"
+        self.comboBox_field.setStyleSheet("QComboBox{border: 1px solid gray;\n"
 "border-radius:10px; \n"
 "padding: 1px 18px 1px 3px;\n"
 "min-width: 6em;\n"
@@ -77,6 +89,10 @@ class Ui_Dialog(object):
 "    border-bottom-right-radius: 3px;\n"
 "}\n"
 "QComboBox::down-arrow{image: url(:/resource/drop-down-arrow.png);}\n"
+"\n"
+"QComboBox:focus{\n"
+"border: 1px solid #006080;\n"
+"}\n"
 "\n"
 "")
         self.comboBox_field.setObjectName("comboBox_field")
@@ -112,7 +128,7 @@ class Ui_Dialog(object):
         self.gridLayout_11 = QtWidgets.QGridLayout()
         self.gridLayout_11.setObjectName("gridLayout_11")
         self.combobox_category = QtWidgets.QComboBox(self.editor)
-        self.combobox_category.setStyleSheet("QComboBox{border: 2px solid gray;\n"
+        self.combobox_category.setStyleSheet("QComboBox{border: 1px solid gray;\n"
 "border-radius:10px; \n"
 "padding: 1px 18px 1px 3px;\n"
 "min-width: 6em;\n"
@@ -131,6 +147,10 @@ class Ui_Dialog(object):
 "}\n"
 "QComboBox::down-arrow{image: url(:/resource/drop-down-arrow.png);}\n"
 "\n"
+"QComboBox:focus{\n"
+"border: 1px solid #006080;\n"
+"}\n"
+"\n"
 "")
         self.combobox_category.setObjectName("combobox_category")
         self.combobox_category.addItem("")
@@ -144,15 +164,29 @@ class Ui_Dialog(object):
         self.combobox_category.addItem("")
         self.gridLayout_11.addWidget(self.combobox_category, 1, 1, 1, 1)
         self.text_phonetic = QtWidgets.QLineEdit(self.editor)
-        self.text_phonetic.setStyleSheet("border-radius:10px;\n"
-"border:2px solid gray;\n"
-"padding: 0 8px;")
+        self.text_phonetic.setStyleSheet("QLineEdit{\n"
+"border-radius:10px;\n"
+"border:1px solid gray;\n"
+"padding: 0 8px;\n"
+"}\n"
+"\n"
+"QLineEdit:focus\n"
+"{\n"
+"    border: 1px solid #006080;\n"
+"}")
         self.text_phonetic.setObjectName("text_phonetic")
         self.gridLayout_11.addWidget(self.text_phonetic, 3, 0, 1, 1)
         self.text_hint = QtWidgets.QLineEdit(self.editor)
-        self.text_hint.setStyleSheet("border-radius:10px;\n"
-"border:2px solid gray;\n"
-"padding: 0 8px;")
+        self.text_hint.setStyleSheet("QLineEdit{\n"
+"border-radius:10px;\n"
+"border:1px solid gray;\n"
+"padding: 0 8px;\n"
+"}\n"
+"\n"
+"QLineEdit:focus\n"
+"{\n"
+"    border: 1px solid #006080;\n"
+"}")
         self.text_hint.setObjectName("text_hint")
         self.gridLayout_11.addWidget(self.text_hint, 3, 1, 1, 1)
         self.label_38 = QtWidgets.QLabel(self.editor)
@@ -170,48 +204,75 @@ class Ui_Dialog(object):
         self.label_53.setObjectName("label_53")
         self.gridLayout_12.addWidget(self.widget_12, 5, 1, 1, 1)
         self.button_delete_picture = QtWidgets.QPushButton(self.editor)
-        self.button_delete_picture.setStyleSheet("border-radius:10px;\n"
-"border:2px solid gray;\n"
+        self.button_delete_picture.setStyleSheet("QPushButton{border-radius:10px;\n"
+"border:1px solid gray;\n"
 "padding: 0 8px;\n"
-" background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
-"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);")
-        self.button_delete_picture.setAutoDefault(False)
+"background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}\n"
+"\n"
+"QPushButton:focus{\n"
+"border: 1px solid #006080;\n"
+"}")
+        self.button_delete_picture.setAutoDefault(True)
         self.button_delete_picture.setObjectName("button_delete_picture")
         self.gridLayout_12.addWidget(self.button_delete_picture, 1, 1, 1, 1)
         self.button_delete_record = QtWidgets.QPushButton(self.editor)
-        self.button_delete_record.setStyleSheet("border-radius:10px;\n"
-"border:2px solid gray;\n"
+        self.button_delete_record.setStyleSheet("QPushButton{border-radius:10px;\n"
+"border:1px solid gray;\n"
 "padding: 0 8px;\n"
-" background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
-"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);")
-        self.button_delete_record.setAutoDefault(False)
+"background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}\n"
+"\n"
+"QPushButton:focus{\n"
+"border: 1px solid #006080;\n"
+"}")
+        self.button_delete_record.setAutoDefault(True)
         self.button_delete_record.setObjectName("button_delete_record")
         self.gridLayout_12.addWidget(self.button_delete_record, 4, 1, 1, 1)
         self.button_record = QtWidgets.QPushButton(self.editor)
-        self.button_record.setStyleSheet("border-radius:10px;\n"
-"border:2px solid gray;\n"
+        self.button_record.setStyleSheet("QPushButton{border-radius:10px;\n"
+"border:1px solid gray;\n"
 "padding: 0 8px;\n"
-" background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
-"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);")
-        self.button_record.setAutoDefault(False)
+"background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}\n"
+"\n"
+"QPushButton:focus{\n"
+"border: 1px solid #006080;\n"
+"}")
+        self.button_record.setAutoDefault(True)
         self.button_record.setObjectName("button_record")
         self.gridLayout_12.addWidget(self.button_record, 4, 0, 1, 1)
         self.button_play_record = QtWidgets.QPushButton(self.editor)
-        self.button_play_record.setStyleSheet("border-radius:10px;\n"
-"border:2px solid gray;\n"
+        self.button_play_record.setStyleSheet("QPushButton{border-radius:10px;\n"
+"border:1px solid gray;\n"
 "padding: 0 8px;\n"
-" background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
-"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);")
-        self.button_play_record.setAutoDefault(False)
+"background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}\n"
+"\n"
+"QPushButton:focus{\n"
+"border: 1px solid #006080;\n"
+"}")
+        self.button_play_record.setAutoDefault(True)
         self.button_play_record.setObjectName("button_play_record")
         self.gridLayout_12.addWidget(self.button_play_record, 5, 0, 1, 1)
         self.label_52 = QtWidgets.QLabel(self.editor)
         self.label_52.setObjectName("label_52")
         self.gridLayout_12.addWidget(self.label_52, 3, 0, 1, 1)
         self.text_tag = QtWidgets.QLineEdit(self.editor)
-        self.text_tag.setStyleSheet("border-radius:10px;\n"
-"border:2px solid gray;\n"
-"padding: 0 8px;")
+        self.text_tag.setStyleSheet("QLineEdit{\n"
+"border-radius:10px;\n"
+"border:1px solid gray;\n"
+"padding: 0 8px;\n"
+"}\n"
+"\n"
+"QLineEdit:focus\n"
+"{\n"
+"    border: 1px solid #006080;\n"
+"}")
         self.text_tag.setObjectName("text_tag")
         self.gridLayout_12.addWidget(self.text_tag, 7, 0, 1, 2)
         self.label_51 = QtWidgets.QLabel(self.editor)
@@ -221,12 +282,17 @@ class Ui_Dialog(object):
         self.label_54.setObjectName("label_54")
         self.gridLayout_12.addWidget(self.label_54, 6, 0, 1, 2)
         self.button_choose_picture = QtWidgets.QPushButton(self.editor)
-        self.button_choose_picture.setStyleSheet("border-radius:10px;\n"
-"border:2px solid gray;\n"
+        self.button_choose_picture.setStyleSheet("QPushButton{border-radius:10px;\n"
+"border:1px solid gray;\n"
 "padding: 0 8px;\n"
-" background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
-"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);")
-        self.button_choose_picture.setAutoDefault(False)
+"background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}\n"
+"\n"
+"QPushButton:focus{\n"
+"border: 1px solid #006080;\n"
+"}")
+        self.button_choose_picture.setAutoDefault(True)
         self.button_choose_picture.setObjectName("button_choose_picture")
         self.gridLayout_12.addWidget(self.button_choose_picture, 1, 0, 1, 1)
         self.gridLayout_11.addLayout(self.gridLayout_12, 7, 1, 1, 1)
@@ -240,9 +306,16 @@ class Ui_Dialog(object):
         self.label_40.setObjectName("label_40")
         self.gridLayout_11.addWidget(self.label_40, 5, 0, 1, 1)
         self.text_definition = QtWidgets.QLineEdit(self.editor)
-        self.text_definition.setStyleSheet("border-radius:10px;\n"
-"border:2px solid gray;\n"
-"padding: 0 8px;")
+        self.text_definition.setStyleSheet("QLineEdit{\n"
+"border-radius:10px;\n"
+"border:1px solid gray;\n"
+"padding: 0 8px;\n"
+"}\n"
+"\n"
+"QLineEdit:focus\n"
+"{\n"
+"    border: 1px solid #006080;\n"
+"}")
         self.text_definition.setObjectName("text_definition")
         self.gridLayout_11.addWidget(self.text_definition, 6, 0, 1, 2)
         self.label_36 = QtWidgets.QLabel(self.editor)
@@ -255,9 +328,16 @@ class Ui_Dialog(object):
         self.picture.setObjectName("picture")
         self.gridLayout_11.addWidget(self.picture, 7, 0, 1, 1)
         self.text_vocabulary = QtWidgets.QLineEdit(self.editor)
-        self.text_vocabulary.setStyleSheet("border-radius:10px;\n"
-"border:2px solid gray;\n"
-"padding: 0 8px;")
+        self.text_vocabulary.setStyleSheet("QLineEdit{\n"
+"border-radius:10px;\n"
+"border:1px solid gray;\n"
+"padding: 0 8px;\n"
+"}\n"
+"\n"
+"QLineEdit:focus\n"
+"{\n"
+"    border: 1px solid #006080;\n"
+"}")
         self.text_vocabulary.setObjectName("text_vocabulary")
         self.gridLayout_11.addWidget(self.text_vocabulary, 1, 0, 1, 1)
         self.widget_3 = QtWidgets.QWidget(self.editor)
@@ -266,38 +346,60 @@ class Ui_Dialog(object):
         self.gridLayout_13.setContentsMargins(6, 6, 6, 6)
         self.gridLayout_13.setObjectName("gridLayout_13")
         self.button_discard = QtWidgets.QPushButton(self.widget_3)
-        self.button_discard.setStyleSheet("border-radius:10px;\n"
-"border:2px solid gray;\n"
+        self.button_discard.setStyleSheet("QPushButton{border-radius:10px;\n"
+"border:1px solid gray;\n"
 "padding: 0 8px;\n"
 "background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
-"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);")
-        self.button_discard.setAutoDefault(False)
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}\n"
+"\n"
+"QPushButton:focus{\n"
+"border: 1px solid #006080;\n"
+"}")
+        self.button_discard.setAutoDefault(True)
         self.button_discard.setObjectName("button_discard")
         self.gridLayout_13.addWidget(self.button_discard, 0, 4, 1, 1)
         self.button_delete = QtWidgets.QPushButton(self.widget_3)
-        self.button_delete.setStyleSheet("border-radius:10px;\n"
-"border:2px solid gray;\n"
+        self.button_delete.setStyleSheet("QPushButton{border-radius:10px;\n"
+"border:1px solid gray;\n"
 "padding: 0 8px;\n"
-" background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
-"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);")
-        self.button_delete.setAutoDefault(False)
+"background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #f6f7fa, stop: 1 #dadbde);\n"
+"}\n"
+"\n"
+"QPushButton:focus{\n"
+"border: 1px solid #006080;\n"
+"}")
+        self.button_delete.setAutoDefault(True)
         self.button_delete.setObjectName("button_delete")
         self.gridLayout_13.addWidget(self.button_delete, 0, 1, 1, 1)
         self.button_save = QtWidgets.QPushButton(self.widget_3)
-        self.button_save.setStyleSheet("border-radius:10px;\n"
-"border:2px solid #3f8cc8;\n"
+        self.button_save.setStyleSheet("QPushButton{border-radius:10px;\n"
+"border:1px solid #3f8cc8;\n"
 "padding: 0 8px;\n"
 "color: rgb(255, 255, 255);\n"
 "background-color: qlineargradient(spread:pad, x1:0.494, y1:0.989, x2:0.494, y2:0.011, stop:0.863158 rgba(23, 132, 255, 250), stop:1 rgba(255, 255, 255, 255));\n"
-"")
-        self.button_save.setAutoDefault(False)
+"}\n"
+"QPushButton:focus{\n"
+"border: 1px solid rgb(0, 255, 255);\n"
+"}\n"
+"QPushButton:disabled{\n"
+"background-color: rgb(195, 203, 218);\n"
+"border:1px solid rgb(195, 203, 218);\n"
+"}")
+        self.button_save.setAutoDefault(True)
         self.button_save.setFlat(False)
         self.button_save.setObjectName("button_save")
         self.gridLayout_13.addWidget(self.button_save, 0, 3, 1, 1)
         self.widget_11 = QtWidgets.QWidget(self.widget_3)
         self.widget_11.setObjectName("widget_11")
         self.gridLayout_13.addWidget(self.widget_11, 0, 2, 1, 1)
-        self.gridLayout_11.addWidget(self.widget_3, 8, 0, 1, 2)
+        self.gridLayout_11.addWidget(self.widget_3, 9, 0, 1, 2)
+        self.label = QtWidgets.QLabel(self.editor)
+        self.label.setText("")
+        self.label.setAlignment(QtCore.Qt.AlignCenter)
+        self.label.setObjectName("label")
+        self.gridLayout_11.addWidget(self.label, 8, 0, 1, 2)
         self.verticalLayout_2.addLayout(self.gridLayout_11)
         self.verticalLayout_3.addWidget(self.splitter)
         self.label_38.setBuddy(self.text_hint)
