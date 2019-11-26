@@ -15,6 +15,14 @@ MAX_LEVEL = 5
 RATIO = [4, 2, 2, 1, 1]
 TOTAL = 10
 
+class Tag(QDialog):
+    def __init__(self):
+        QDialog.__init__(self, None, Qt.Dialog | Qt.WindowTitleHint | Qt.CustomizeWindowHint)
+        from interface.form import tag
+        self.form = interface.form.tag.Ui_Dialog()
+        self.form.setupUi(self)
+        self.show()
+        self.setModal(True)
 
 class Test(QDialog):
     
@@ -25,6 +33,8 @@ class Test(QDialog):
         self.record_name = ""
         self.is_correct_answer = False
         self.learn_value = 0
+        self.tag = ""
+        self.tag_dialog = None
         #Function base on test level
         self.show_function = [self.show_phonetic,
                 self.show_hint,
@@ -39,25 +49,35 @@ class Test(QDialog):
                 self.check_longest_common_string,
                 self.check_incorrect_character]
 
-        self.config = self.load_config()
-        # if test by tag -> ask for tag
-        if self.config["field"] == 1:
-            self.close()
-
+        self.config = utils.load_config()
         #quantity of word for each level
         self.quantity = [int(RATIO[i] * self.config["num"] / TOTAL) for i in range(5)]
         self.quantity[0] = self.config["num"] - sum([self.quantity[i] for i in range(4,0,-1)])
         self.setModal(True)
-        self.setup_ui()   
-        
-        #get words
-        self.words = self.get_words()
+        self.setup_ui()
+        self.words = []
         self.current_index = 0
-        if (self.words == None):
-            QMessageBox.critical(self, "Không tìm thấy từ mới", "Memento không tìm thấy từ của bạn", QMessageBox.Ok)
-            self.close()
-        else:
-            self.show_word(self.words[self.current_index])
+        # if test by tag -> ask for tag
+        if self.config["field"] == 1:
+            self.tag_dialog = Tag()
+            self.tag_dialog.form.button_back.clicked.connect(self.close_tag)
+            self.tag_dialog.form.button_find.clicked.connect(self.find_tag)            
+        elif self.config["field"] == 2:
+            self.words = self.get_words()
+            self.current_index = 0
+            if (len(self.words) == 0):
+                QMessageBox.critical(self, "Không tìm thấy từ mới", "Hôm nay bạn chưa thêm từ mới", QMessageBox.Ok)
+                self.close()
+            else:
+                self.show_word(self.words[self.current_index])           
+        elif self.config["field"] == 0:
+            self.words = self.get_words()
+            self.current_index = 0
+            if (len(self.words) == 0):
+                QMessageBox.critical(self, "Không tìm thấy từ mới", "Memento không tìm thấy từ của bạn", QMessageBox.Ok)
+                self.close()
+            else:
+                self.show_word(self.words[self.current_index])           
 
     def setup_ui(self):
         self.setup_dialog()
@@ -71,12 +91,7 @@ class Test(QDialog):
         self.form.setupUi(self)
         self.form.text_answer.setFocus()
 
-    def load_config(self):
-        file = "./config.json"
-        with open(file, "r") as config_file:
-            config = json.load(config_file)
-
-        return config     
+        
 
     def setup_button(self):  
         self.form.button_play_record.clicked.connect(self.button_play_record_clicked)
@@ -162,6 +177,27 @@ class Test(QDialog):
             self.is_correct_answer = True
             self.update_learn_data(self.words[self.current_index], True)
 
+    def close_tag(self):
+        self.tag_dialog.close() 
+        self.close()
+
+    def find_tag(self):
+        if not utils.is_invalid_string(self.tag_dialog.form.text_tag.displayText()):
+            self.tag_dialog.form.label_bottom.setText("<p style='color:red'>Kí tự không hợp lệ `~!@#$%^&*()+=_<>?/\|;[]{}</p>")
+            self.tag_dialog.form.text_tag.setFocus()
+            return
+        self.tag = utils.format_string(self.tag_dialog.form.text_tag.displayText())
+        if self.tag == "":
+            self.tag_dialog.form.label_bottom.setText("Bạn chưa điền thẻ")
+            self.tag_dialog.form.text_tag.setFocus()
+            return
+        self.words = self.get_words()
+        if len(self.words) == 0:
+            self.tag_dialog.form.label_bottom.setText("Không tìm thấy thẻ bạn vừa nhập")
+            self.tag_dialog.form.text_tag.setFocus()
+            return
+        self.show_word(self.words[self.current_index])
+        self.tag_dialog.close()
     #Retrieve word from database
     def get_words(self):
         #test
@@ -178,7 +214,12 @@ class Test(QDialog):
         # )
 
         # 0 = all, 1 = by tag , 2 = added today
-        words = self.controller.db.get_words(MAX_LEVEL, self.quantity, self.config["field"])
+        if self.config["field"] == 0:
+            words = self.controller.db.get_words(MAX_LEVEL, self.quantity, 0)
+        elif self.config["field"] == 1:
+            words = self.controller.db.get_words(MAX_LEVEL, self.quantity, 1, self.tag)
+        elif self.config["field"] == 2:
+            words = self.controller.db.get_words(MAX_LEVEL, self.quantity, 2)
         random.shuffle(words)
         return words
 
@@ -298,7 +339,7 @@ class Test(QDialog):
                             txt = "{}{}".format(red(answer[i]), txt)
             #txt = "<html>" + txt + "</html>"
             self.form.label_top.setText(txt)
-            print(txt)
+            #print(txt)
 
     def check_record(self, word, answer):
         if self.config["test"] > 3:
@@ -323,11 +364,13 @@ class Test(QDialog):
             self.form.label_bottom.setText("<p style='color:green'>Chính xác")
             self.is_correct_answer = True
             return
+        if not utils.is_invalid_string(answer):
+            self.form.label_bottom.setText("<p style='color:red'>Kí tự không hợp lệ `~!@#$%^&*()+=_<>?/\|;[]{}</p>")
+            return
         else:
-            self.form.label_bottom.setText("<p style='color:Red'>Chưa chính xác")
+            self.form.label_bottom.setText("<p style='color:red'>Chưa chính xác")
         for c in range(MAX_HINT_LEVEL-1, self.config["hint"]-2, -1):
             self.check_function[c](word, answer)
-        
         
  
         

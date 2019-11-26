@@ -11,11 +11,11 @@ def record_audio(parent, media_folder):
     dialog_record.setIconPixmap(QPixmap(":/resource/media-record.png"))
     #button
     button_save = QPushButton("Lưu")
-    button_save.setDefault(True)
     button_cancel = QPushButton("Hủy")
     dialog_record.addButton(button_save, QMessageBox.AcceptRole)
     dialog_record.addButton(button_cancel, QMessageBox.RejectRole)
     dialog_record.setEscapeButton(button_cancel)
+    dialog_record.setDefaultButton(button_save)
 
     #file name
     filename = str(datetime.datetime.today().timestamp()) + ".wav"

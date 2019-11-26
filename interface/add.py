@@ -16,6 +16,7 @@ class Add(QDialog):
         self.picture_name = ""
         self.record_name = ""
         self.hitory = []
+        self.timer = QTimer()
         self.setModal(True)
         self.setup_ui() 
         
@@ -145,23 +146,23 @@ class Add(QDialog):
             return
 
         if not utils.is_invalid_string(self.form.text_vocabulary.displayText()):
-            self.form.label_bottom.setText("<p style='color:red'>Kí tự không hợp lệ `~!@#$%^&*()+=_<>?/\|;</p>")
+            self.form.label_bottom.setText("<p style='color:red'>Kí tự không hợp lệ `~!@#$%^&*()+=_<>?/\|[]{};</p>")
             self.form.text_vocabulary.setFocus()
             return
         if not utils.is_invalid_string(self.form.text_phonetic.displayText()):
-            self.form.label_bottom.setText("<p style='color:red'>Kí tự không hợp lệ `~!@#$%^&*()+=_<>?/\|;</p>")
+            self.form.label_bottom.setText("<p style='color:red'>Kí tự không hợp lệ `~!@#$%^&*()+=_<>?/\|;[]{}</p>")
             self.form.text_phonetic.setFocus()
             return
         if not utils.is_invalid_string(self.form.text_hint.displayText()):
-            self.form.label_bottom.setText("<p style='color:red'>Kí tự không hợp lệ `~!@#$%^&*()+=_<>?/\|;</p>")
+            self.form.label_bottom.setText("<p style='color:red'>Kí tự không hợp lệ `~!@#$%^&*()+=_<>?/\|;[]{}</p>")
             self.form.text_hint.setFocus()
             return
         if not utils.is_invalid_string(self.form.text_definition.displayText()):
-            self.form.label_bottom.setText("<p style='color:red'>Kí tự không hợp lệ `~!@#$%^&*()+=_<>?/\|;</p>")
+            self.form.label_bottom.setText("<p style='color:red'>Kí tự không hợp lệ `~!@#$%^&*()+=_<>?/\|;[]{}</p>")
             self.form.text_definition.setFocus()
             return
         if not utils.is_invalid_string(self.form.text_tag.displayText()):
-            self.form.label_bottom.setText("<p style='color:red'>Kí tự không hợp lệ `~!@#$%^&*()+=_<>?/\|;</p>")
+            self.form.label_bottom.setText("<p style='color:red'>Kí tự không hợp lệ `~!@#$%^&*()+=_<>?/\|;[]{}</p>")
             self.form.text_tag.setFocus()            
             return
         self.form.label_bottom.setText("")
@@ -179,8 +180,17 @@ class Add(QDialog):
         )
 
         self.controller.db.add_word(word)
+        self.show_popup()
         self.clear_text()
         
+    def show_popup(self):
+        self.form.label_bottom.setText("<p style = 'color:green'>Đã thêm<p>")    
+        self.timer.timeout.connect(self.close_popup)
+        self.timer.start(1000)
+    
+    def close_popup(self):
+        self.form.label_bottom.setText("")
+
     def clear_text(self):
         self.form.text_vocabulary.clear()
         self.form.combobox_category.setCurrentIndex(0)
@@ -192,8 +202,23 @@ class Add(QDialog):
         self.record_name = ""
         self.form.picture.clear()
         self.form.text_vocabulary.setFocus()
-
+        self.form.button_delete_picture.setDisabled(True)
+        self.form.button_delete_record.setDisabled(True)
+        self.form.button_play_record.setDisabled(True)
         
+    def closeEvent(e):
+        if self.picture_name != "":
+            try:
+                os.remove(os.path.join(self.controller.media_folder_path,self.picture_name))
+            except:
+                print("File " + self.picture_name + " not found")
+        if self.record_name != "":            
+            try:
+                os.remove(os.path.join(self.controller.media_folder_path,self.record_name))
+            except:
+                print("File " + self.record_name + " not found")
+        e.accept()
+
     def exit_(self):
         self.close()
 

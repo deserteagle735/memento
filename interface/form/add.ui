@@ -23,7 +23,7 @@
   <property name="styleSheet">
    <string notr="true">font: 12pt &quot;SF Pro Display&quot;;</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_4">
+  <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <layout class="QGridLayout" name="gridLayout_11">
      <item row="0" column="1">
@@ -87,6 +87,7 @@ padding: 0 8px;
 QLineEdit:focus
 {
     border: 1px solid #006080;
+
 }</string>
        </property>
       </widget>
@@ -94,27 +95,7 @@ QLineEdit:focus
      <item row="7" column="1">
       <layout class="QGridLayout" name="gridLayout_12">
        <item row="7" column="1">
-        <widget class="QWidget" name="widget_12" native="true">
-         <widget class="QLabel" name="label_53">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>31</width>
-            <height>31</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="pixmap">
-           <pixmap>../resource/speaker.png</pixmap>
-          </property>
-         </widget>
-        </widget>
+        <widget class="QWidget" name="widget_12" native="true"/>
        </item>
        <item row="3" column="1">
         <widget class="QPushButton" name="button_delete_picture">
@@ -168,6 +149,9 @@ border: 1px solid #006080;
        </item>
        <item row="6" column="0">
         <widget class="QPushButton" name="button_record">
+         <property name="toolTip">
+          <string>CtrL+R</string>
+         </property>
          <property name="styleSheet">
           <string notr="true">QPushButton{border-radius:10px;
 border:1px solid gray;
@@ -183,6 +167,9 @@ border: 1px solid #006080;
          <property name="text">
           <string>Bắt đầu</string>
          </property>
+         <property name="shortcut">
+          <string>Ctrl+R</string>
+         </property>
          <property name="autoDefault">
           <bool>true</bool>
          </property>
@@ -195,6 +182,9 @@ border: 1px solid #006080;
         <widget class="QPushButton" name="button_play_record">
          <property name="enabled">
           <bool>false</bool>
+         </property>
+         <property name="toolTip">
+          <string>Ctrl+P</string>
          </property>
          <property name="styleSheet">
           <string notr="true">QPushButton{border-radius:10px;
@@ -210,6 +200,9 @@ border: 1px solid #006080;
          </property>
          <property name="text">
           <string>Nghe lại</string>
+         </property>
+         <property name="shortcut">
+          <string>Ctrl+P</string>
          </property>
          <property name="autoDefault">
           <bool>true</bool>
@@ -241,6 +234,9 @@ border: 1px solid #006080;
        </item>
        <item row="3" column="0">
         <widget class="QPushButton" name="button_choose_picture">
+         <property name="toolTip">
+          <string>Ctrl+O</string>
+         </property>
          <property name="styleSheet">
           <string notr="true">QPushButton{border-radius:10px;
 border:1px solid gray;
@@ -255,6 +251,9 @@ border: 1px solid #006080;
          </property>
          <property name="text">
           <string>Chọn ảnh</string>
+         </property>
+         <property name="shortcut">
+          <string>Ctrl+O</string>
          </property>
          <property name="autoDefault">
           <bool>true</bool>
@@ -273,6 +272,7 @@ padding: 0 8px;
 QLineEdit:focus
 {
     border: 1px solid #006080;
+
 }</string>
          </property>
         </widget>
@@ -301,6 +301,7 @@ padding: 0 8px;
 QLineEdit:focus
 {
     border: 1px solid #006080;
+
 }</string>
        </property>
       </widget>
@@ -402,6 +403,7 @@ padding: 0 8px;
 QLineEdit:focus
 {
     border: 1px solid #006080;
+
 }</string>
        </property>
       </widget>
@@ -425,6 +427,7 @@ padding: 0 8px;
 QLineEdit:focus
 {
     border: 1px solid #006080;
+
 }</string>
        </property>
       </widget>
@@ -442,24 +445,17 @@ QLineEdit:focus
     </widget>
    </item>
    <item>
-    <widget class="QWidget" name="widget_3" native="true">
-     <layout class="QGridLayout" name="gridLayout_13">
-      <property name="sizeConstraint">
-       <enum>QLayout::SetDefaultConstraint</enum>
-      </property>
-      <item row="1" column="2">
-       <widget class="QWidget" name="widget_11" native="true"/>
-      </item>
-      <item row="1" column="1">
-       <widget class="QPushButton" name="button_history">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="toolTip">
-         <string>F3</string>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton{border-radius:10px;
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="button_history">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="toolTip">
+        <string>Ctrl+H</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{border-radius:10px;
 border:1px solid gray;
 padding: 0 8px;
 background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
@@ -469,28 +465,31 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
 QPushButton:focus{
 border: 1px solid #006080;
 }</string>
-        </property>
-        <property name="text">
-         <string>Lịch sử</string>
-        </property>
-        <property name="shortcut">
-         <string>F3</string>
-        </property>
-        <property name="autoDefault">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="3">
-       <widget class="QPushButton" name="button_add">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="toolTip">
-         <string>F1</string>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton{border-radius:10px;
+       </property>
+       <property name="text">
+        <string>Lịch sử</string>
+       </property>
+       <property name="shortcut">
+        <string>Ctrl+H</string>
+       </property>
+       <property name="autoDefault">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QWidget" name="widget_11" native="true"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="button_add">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="toolTip">
+        <string>Ctrl+S</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{border-radius:10px;
 border:1px solid #3f8cc8;
 padding: 0 8px;
 color: rgb(255, 255, 255);
@@ -503,28 +502,28 @@ QPushButton:disabled{
 background-color: rgb(195, 203, 218);
 border:1px solid rgb(195, 203, 218);
 }</string>
-        </property>
-        <property name="text">
-         <string>Thêm</string>
-        </property>
-        <property name="shortcut">
-         <string>F1</string>
-        </property>
-        <property name="autoDefault">
-         <bool>true</bool>
-        </property>
-        <property name="flat">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="4">
-       <widget class="QPushButton" name="button_exit">
-        <property name="toolTip">
-         <string>F2</string>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton{border-radius:10px;
+       </property>
+       <property name="text">
+        <string>Thêm</string>
+       </property>
+       <property name="shortcut">
+        <string>Ctrl+S</string>
+       </property>
+       <property name="autoDefault">
+        <bool>true</bool>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="button_exit">
+       <property name="toolTip">
+        <string>Esc</string>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{border-radius:10px;
 border:1px solid gray;
 padding: 0 8px;
 background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
@@ -534,20 +533,19 @@ background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
 QPushButton:focus{
 border: 1px solid #006080;
 }</string>
-        </property>
-        <property name="text">
-         <string>Thoát</string>
-        </property>
-        <property name="shortcut">
-         <string>F2</string>
-        </property>
-        <property name="autoDefault">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
+       </property>
+       <property name="text">
+        <string>Thoát</string>
+       </property>
+       <property name="shortcut">
+        <string>Esc</string>
+       </property>
+       <property name="autoDefault">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>
@@ -563,9 +561,6 @@ border: 1px solid #006080;
   <tabstop>button_record</tabstop>
   <tabstop>button_play_record</tabstop>
   <tabstop>button_delete_record</tabstop>
-  <tabstop>button_add</tabstop>
-  <tabstop>button_exit</tabstop>
-  <tabstop>button_history</tabstop>
  </tabstops>
  <resources>
   <include location="../../resource.qrc"/>

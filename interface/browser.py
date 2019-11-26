@@ -12,6 +12,7 @@ class Browser(QDialog):
         self.controller = controller
         self.picture_name = ""
         self.record_name = ""
+        self.timer = QTimer()
         self.id = None
         self.current_row = 0
         self.name = {
@@ -50,7 +51,7 @@ class Browser(QDialog):
 
     def setup_data(self):
         #connect to database
-        self.model = self.controller.db.start_model() 
+        self.model = self.controller.db.start_model()
 
         #setup view
         record = self.model.record(0)
@@ -62,7 +63,8 @@ class Browser(QDialog):
         self.form.tableView.setColumnHidden(record.indexOf("record_name"), True)
         self.form.tableView.setColumnHidden(record.indexOf("met"), True)
         self.form.tableView.setColumnHidden(record.indexOf("correct"), True)
-        self.form.tableView.selectionModel()
+        self.form.tableView.resizeColumnsToContents()
+        #self.form.tableView.selectionModel()
         
         #change data mapper when user change row
         self.form.tableView.selectionModel().currentRowChanged.connect(self.on_row_changed)
@@ -165,7 +167,6 @@ class Browser(QDialog):
         self.form.label_bottom.setText("")
 
         self.current_row = self.form.tableView.currentIndex().row()
-        current_index = self.form.tableView.currentIndex().row()
         self.model.setData(
             self.model.index(self.current_row, self.model.fieldIndex("vocabulary")),
             utils.format_string(self.form.text_vocabulary.displayText()))
@@ -196,7 +197,7 @@ class Browser(QDialog):
                 try:
                     os.remove(os.path.join(self.controller.media_folder_path, file))
                 except: 
-                    print("File " + file + "not found")
+                    print("File " + file + " not found")
         for file in self.recs:
             if file != self.record_name:
                 try:
@@ -206,7 +207,17 @@ class Browser(QDialog):
 
         self.model.submitAll()
         self.form.tableView.setCurrentIndex(self.model.index(self.current_row, 0))
+        self.show_popup()
         print("Saved " + self.form.text_vocabulary.displayText())
+
+
+    def show_popup(self):
+        self.form.label_bottom.setText("<p style = 'color:green'>Đã lưu<p>")    
+        self.timer.timeout.connect(self.close_popup)
+        self.timer.start(1000)
+    
+    def close_popup(self):
+        self.form.label_bottom.setText("")
 
     def button_search_clicked(self):
         result = self.controller.db.search(
@@ -219,6 +230,7 @@ class Browser(QDialog):
         #self.model.select()
         self.form.tableView.setModel(self.model)
         self.form.tableView.selectionModel()
+        self.form.tableView.selectionModel().currentRowChanged.connect(self.on_row_changed)
         self.form.tableView.setCurrentIndex(self.model.index(0,0))
     
     def choose_picture(self):

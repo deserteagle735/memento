@@ -1,6 +1,7 @@
 import interface
-from interface.qt import *
 import json
+from interface.qt import *
+from memento import utils
 
 TEST_LEVEL_TEXT = {
     1 :""" - Cho biết số lượng từ, số lượng chữ cái, chứ cái đầu và cuối của mỗi từ
@@ -61,7 +62,7 @@ class Settings(QDialog):
     def __init__(self, controller):
         QDialog.__init__(self, None, Qt.Window)
         self.controller = controller
-        self.config = self.load_config()
+        self.config = utils.load_config()
         self.setup_ui()
         self.setup_button()
         self.setup_data()
@@ -86,22 +87,13 @@ class Settings(QDialog):
         self.form.spinbox_test_level.valueChanged.connect(self.spinbox_test_level_value_changed)
         self.form.spinbox_hint_level.valueChanged.connect(self.spinbox_hint_level_value_changed)
 
-    def load_config(self):
-        file = "./config.json"
-        with open(file, "r") as config_file:
-            config = json.load(config_file)
-
-        return config
 
     def save_config(self):
-        file = "./config.json"
         self.config["field"] = self.form.combobox_field.currentIndex()
         self.config["test"] = self.form.spinbox_test_level.value()
         self.config["hint"] = self.form.spinbox_hint_level.value()
         self.config["num"] = self.form.spinbox_number_of_word.value()
-
-        with open(file, "w") as config_file:
-            json.dump(self.config, config_file)
+        utils.save_config(self.config)
 
     def spinbox_test_level_value_changed(self):
         self.setup_data()

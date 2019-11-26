@@ -40,7 +40,7 @@ record_name text,
 level int default 0,
 met int default 0,
 correct int default 0,
-create_at text default current_timestamp
+create_at text default (date('now', 'localtime'))
 );""")
     
     def add_word(self, word):
@@ -89,10 +89,10 @@ where id = ?
         query.exec_()
 
     def start_model(self):
-        self.model = QSqlTableModel(parent=None, db=self.connection)
-        self.model.setEditStrategy(QSqlTableModel.OnManualSubmit)
-        self.model.setTable("word")
-        self.model.setQuery(QSqlQuery(
+        model = QSqlTableModel(parent=None, db=self.connection)
+        model.setEditStrategy(QSqlTableModel.OnManualSubmit)
+        model.setTable("word")
+        model.setQuery(QSqlQuery(
 """select id,
 vocabulary,
 category,
@@ -105,20 +105,21 @@ record_name,
 level,
 met,
 correct,
-date(create_at,'localtime') as created from word""", 
+create_at from word""", 
         self.connection))
 
         #setup model
-        record = self.model.record(0)
-        self.model.setHeaderData(record.indexOf("vocabulary"), Qt.Horizontal, "Từ mới")
-        self.model.setHeaderData(record.indexOf("category"), Qt.Horizontal, "Từ loại")
-        self.model.setHeaderData(record.indexOf("definition"), Qt.Horizontal, "Dịch nghĩa")
-        self.model.setHeaderData(record.indexOf("tag"), Qt.Horizontal, "Thẻ")
-        self.model.setHeaderData(record.indexOf("level"), Qt.Horizontal, "Trình độ")
-        self.model.setHeaderData(record.indexOf("met"), Qt.Horizontal, "Gặp")
-        self.model.setHeaderData(record.indexOf("correct"), Qt.Horizontal, "Đúng")
-        self.model.setHeaderData(record.indexOf("created"), Qt.Horizontal, "Ngày thêm")
-        return self.model
+        record = model.record(0)
+        model.setHeaderData(record.indexOf("vocabulary"), Qt.Horizontal, "Từ mới")
+        model.setHeaderData(record.indexOf("category"), Qt.Horizontal, "Từ loại")
+        model.setHeaderData(record.indexOf("definition"), Qt.Horizontal, "Dịch nghĩa")
+        model.setHeaderData(record.indexOf("tag"), Qt.Horizontal, "Thẻ")
+        model.setHeaderData(record.indexOf("level"), Qt.Horizontal, "Trình độ")
+        model.setHeaderData(record.indexOf("met"), Qt.Horizontal, "Gặp")
+        model.setHeaderData(record.indexOf("correct"), Qt.Horizontal, "Đúng")
+        #model.setHeaderData(12, Qt.Horizontal, "Ngày thêm")
+        model.setHeaderData(record.indexOf("create_at"), Qt.Horizontal, "Ngày thêm")
+        return model
         
     def search(self, field, text):
         sql = ""
@@ -131,12 +132,12 @@ date(create_at,'localtime') as created from word""",
             
         elif field == "today":
             #sql =  "date(create_at,'localtime') = date('now','localtime')"
-            sql =  "created = date('now','localtime')"
+            sql =  "create_at = date('now','localtime')"
         elif field == "create_at":
             if text == "":
                 return
             #sql = "date(create_at,'localtime') like '%" + text + "%'"
-            sql = "created like '%" + text + "%'"
+            sql = "create_at like '%" + text + "%'"
         else:
             if text == "":
                 return
@@ -159,10 +160,10 @@ record_name,
 level,
 met,
 correct,
-date(create_at,'localtime') as created from word """ + "where " + condition
-        print(sql)
+create_at from word """ + "where " + condition
+        #print(sql)
         model.setQuery(QSqlQuery(sql, self.connection))
-        record = self.model.record(0)
+        record = model.record(0)
         model.setHeaderData(record.indexOf("vocabulary"), Qt.Horizontal, "Từ mới")
         model.setHeaderData(record.indexOf("category"), Qt.Horizontal, "Từ loại")
         model.setHeaderData(record.indexOf("definition"), Qt.Horizontal, "Dịch nghĩa")
@@ -170,7 +171,8 @@ date(create_at,'localtime') as created from word """ + "where " + condition
         model.setHeaderData(record.indexOf("level"), Qt.Horizontal, "Trình độ")
         model.setHeaderData(record.indexOf("met"), Qt.Horizontal, "Gặp")
         model.setHeaderData(record.indexOf("correct"), Qt.Horizontal, "Đúng")
-        model.setHeaderData(record.indexOf("created"), Qt.Horizontal, "Ngày thêm")
+        model.setHeaderData(record.indexOf("create_at"), Qt.Horizontal, "Ngày thêm")
+        
         return model
 
 
@@ -285,7 +287,7 @@ record_name,
 level,
 met,
 correct from word
-where level = ? and date(create_at, 'localtime') = date('now', 'localtime')
+where level = ? and create_at = date('now', 'localtime')
 order by correct asc, met asc
 limit ?""")
                 query.addBindValue(level)

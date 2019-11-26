@@ -22,7 +22,7 @@ class Ui_Dialog(object):
         font.setPointSize(12)
         Dialog.setFont(font)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../resource/icon/memento.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(":/resource/memento.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         Dialog.setWindowIcon(icon)
         Dialog.setStyleSheet("font: 12pt \"SF Pro Display\";")
         self.verticalLayout_3 = QtWidgets.QVBoxLayout(Dialog)
@@ -194,15 +194,22 @@ class Ui_Dialog(object):
         self.gridLayout_11.addWidget(self.label_38, 2, 1, 1, 1)
         self.gridLayout_12 = QtWidgets.QGridLayout()
         self.gridLayout_12.setObjectName("gridLayout_12")
+        self.text_tag = QtWidgets.QLineEdit(self.editor)
+        self.text_tag.setStyleSheet("QLineEdit{\n"
+"border-radius:10px;\n"
+"border:1px solid gray;\n"
+"padding: 0 8px;\n"
+"}\n"
+"\n"
+"QLineEdit:focus\n"
+"{\n"
+"    border: 1px solid #006080;\n"
+"}")
+        self.text_tag.setObjectName("text_tag")
+        self.gridLayout_12.addWidget(self.text_tag, 1, 0, 1, 2)
         self.widget_12 = QtWidgets.QWidget(self.editor)
         self.widget_12.setObjectName("widget_12")
-        self.label_53 = QtWidgets.QLabel(self.widget_12)
-        self.label_53.setEnabled(False)
-        self.label_53.setGeometry(QtCore.QRect(0, 0, 31, 31))
-        self.label_53.setText("")
-        self.label_53.setPixmap(QtGui.QPixmap("../resource/speaker.png"))
-        self.label_53.setObjectName("label_53")
-        self.gridLayout_12.addWidget(self.widget_12, 5, 1, 1, 1)
+        self.gridLayout_12.addWidget(self.widget_12, 8, 1, 1, 1)
         self.button_delete_picture = QtWidgets.QPushButton(self.editor)
         self.button_delete_picture.setStyleSheet("QPushButton{border-radius:10px;\n"
 "border:1px solid gray;\n"
@@ -216,7 +223,7 @@ class Ui_Dialog(object):
 "}")
         self.button_delete_picture.setAutoDefault(True)
         self.button_delete_picture.setObjectName("button_delete_picture")
-        self.gridLayout_12.addWidget(self.button_delete_picture, 1, 1, 1, 1)
+        self.gridLayout_12.addWidget(self.button_delete_picture, 4, 1, 1, 1)
         self.button_delete_record = QtWidgets.QPushButton(self.editor)
         self.button_delete_record.setStyleSheet("QPushButton{border-radius:10px;\n"
 "border:1px solid gray;\n"
@@ -230,7 +237,7 @@ class Ui_Dialog(object):
 "}")
         self.button_delete_record.setAutoDefault(True)
         self.button_delete_record.setObjectName("button_delete_record")
-        self.gridLayout_12.addWidget(self.button_delete_record, 4, 1, 1, 1)
+        self.gridLayout_12.addWidget(self.button_delete_record, 7, 1, 1, 1)
         self.button_record = QtWidgets.QPushButton(self.editor)
         self.button_record.setStyleSheet("QPushButton{border-radius:10px;\n"
 "border:1px solid gray;\n"
@@ -244,7 +251,7 @@ class Ui_Dialog(object):
 "}")
         self.button_record.setAutoDefault(True)
         self.button_record.setObjectName("button_record")
-        self.gridLayout_12.addWidget(self.button_record, 4, 0, 1, 1)
+        self.gridLayout_12.addWidget(self.button_record, 7, 0, 1, 1)
         self.button_play_record = QtWidgets.QPushButton(self.editor)
         self.button_play_record.setStyleSheet("QPushButton{border-radius:10px;\n"
 "border:1px solid gray;\n"
@@ -258,29 +265,13 @@ class Ui_Dialog(object):
 "}")
         self.button_play_record.setAutoDefault(True)
         self.button_play_record.setObjectName("button_play_record")
-        self.gridLayout_12.addWidget(self.button_play_record, 5, 0, 1, 1)
+        self.gridLayout_12.addWidget(self.button_play_record, 8, 0, 1, 1)
         self.label_52 = QtWidgets.QLabel(self.editor)
         self.label_52.setObjectName("label_52")
-        self.gridLayout_12.addWidget(self.label_52, 3, 0, 1, 1)
-        self.text_tag = QtWidgets.QLineEdit(self.editor)
-        self.text_tag.setStyleSheet("QLineEdit{\n"
-"border-radius:10px;\n"
-"border:1px solid gray;\n"
-"padding: 0 8px;\n"
-"}\n"
-"\n"
-"QLineEdit:focus\n"
-"{\n"
-"    border: 1px solid #006080;\n"
-"}")
-        self.text_tag.setObjectName("text_tag")
-        self.gridLayout_12.addWidget(self.text_tag, 7, 0, 1, 2)
+        self.gridLayout_12.addWidget(self.label_52, 6, 0, 1, 1)
         self.label_51 = QtWidgets.QLabel(self.editor)
         self.label_51.setObjectName("label_51")
-        self.gridLayout_12.addWidget(self.label_51, 0, 0, 1, 2)
-        self.label_54 = QtWidgets.QLabel(self.editor)
-        self.label_54.setObjectName("label_54")
-        self.gridLayout_12.addWidget(self.label_54, 6, 0, 1, 2)
+        self.gridLayout_12.addWidget(self.label_51, 2, 0, 1, 2)
         self.button_choose_picture = QtWidgets.QPushButton(self.editor)
         self.button_choose_picture.setStyleSheet("QPushButton{border-radius:10px;\n"
 "border:1px solid gray;\n"
@@ -294,7 +285,10 @@ class Ui_Dialog(object):
 "}")
         self.button_choose_picture.setAutoDefault(True)
         self.button_choose_picture.setObjectName("button_choose_picture")
-        self.gridLayout_12.addWidget(self.button_choose_picture, 1, 0, 1, 1)
+        self.gridLayout_12.addWidget(self.button_choose_picture, 4, 0, 1, 1)
+        self.label_54 = QtWidgets.QLabel(self.editor)
+        self.label_54.setObjectName("label_54")
+        self.gridLayout_12.addWidget(self.label_54, 0, 0, 1, 1)
         self.gridLayout_11.addLayout(self.gridLayout_12, 7, 1, 1, 1)
         self.label_37 = QtWidgets.QLabel(self.editor)
         self.label_37.setObjectName("label_37")
@@ -395,11 +389,11 @@ class Ui_Dialog(object):
         self.widget_11.setObjectName("widget_11")
         self.gridLayout_13.addWidget(self.widget_11, 0, 2, 1, 1)
         self.gridLayout_11.addWidget(self.widget_3, 9, 0, 1, 2)
-        self.label = QtWidgets.QLabel(self.editor)
-        self.label.setText("")
-        self.label.setAlignment(QtCore.Qt.AlignCenter)
-        self.label.setObjectName("label")
-        self.gridLayout_11.addWidget(self.label, 8, 0, 1, 2)
+        self.label_bottom = QtWidgets.QLabel(self.editor)
+        self.label_bottom.setText("")
+        self.label_bottom.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_bottom.setObjectName("label_bottom")
+        self.gridLayout_11.addWidget(self.label_bottom, 8, 0, 1, 2)
         self.verticalLayout_2.addLayout(self.gridLayout_11)
         self.verticalLayout_3.addWidget(self.splitter)
         self.label_38.setBuddy(self.text_hint)
@@ -418,6 +412,8 @@ class Ui_Dialog(object):
         Dialog.setWindowTitle(_translate("Dialog", "Danh sách"))
         self.label_2.setText(_translate("Dialog", "Từ khóa"))
         self.label_3.setText(_translate("Dialog", "Tìm theo"))
+        self.button_search.setToolTip(_translate("Dialog", "Ctrl+F"))
+        self.button_search.setShortcut(_translate("Dialog", "Ctrl+F"))
         self.comboBox_field.setItemText(0, _translate("Dialog", "Tất cả"))
         self.comboBox_field.setItemText(1, _translate("Dialog", "Từ mới"))
         self.comboBox_field.setItemText(2, _translate("Dialog", "Thẻ"))
@@ -436,23 +432,29 @@ class Ui_Dialog(object):
         self.label_38.setText(_translate("Dialog", "Gợi ý"))
         self.button_delete_picture.setText(_translate("Dialog", "Xóa"))
         self.button_delete_record.setText(_translate("Dialog", "Xóa"))
+        self.button_record.setToolTip(_translate("Dialog", "Ctrl+R"))
         self.button_record.setText(_translate("Dialog", "Bắt đầu"))
+        self.button_record.setShortcut(_translate("Dialog", "Ctrl+R"))
+        self.button_play_record.setToolTip(_translate("Dialog", "Ctrl+P"))
         self.button_play_record.setText(_translate("Dialog", "Nghe lại"))
+        self.button_play_record.setShortcut(_translate("Dialog", "Ctrl+P"))
         self.label_52.setText(_translate("Dialog", "Ghi âm"))
         self.label_51.setText(_translate("Dialog", "Hình ảnh gợi ý"))
-        self.label_54.setText(_translate("Dialog", "Gắn thẻ"))
+        self.button_choose_picture.setToolTip(_translate("Dialog", "Ctrl+O"))
         self.button_choose_picture.setText(_translate("Dialog", "Chọn ảnh"))
+        self.button_choose_picture.setShortcut(_translate("Dialog", "Ctrl+O"))
+        self.label_54.setText(_translate("Dialog", "Gắn thẻ"))
         self.label_37.setText(_translate("Dialog", "Từ loại"))
         self.label_39.setText(_translate("Dialog", "Phiên âm"))
         self.label_40.setText(_translate("Dialog", "Dịch nghĩa"))
         self.label_36.setText(_translate("Dialog", "Từ mới"))
-        self.button_discard.setToolTip(_translate("Dialog", "F2"))
+        self.button_discard.setToolTip(_translate("Dialog", "Ctrl+D"))
         self.button_discard.setText(_translate("Dialog", "Hủy"))
-        self.button_discard.setShortcut(_translate("Dialog", "F2"))
-        self.button_delete.setToolTip(_translate("Dialog", "F3"))
+        self.button_discard.setShortcut(_translate("Dialog", "Ctrl+D"))
+        self.button_delete.setToolTip(_translate("Dialog", "Delete"))
         self.button_delete.setText(_translate("Dialog", "Xóa"))
-        self.button_delete.setShortcut(_translate("Dialog", "F3"))
-        self.button_save.setToolTip(_translate("Dialog", "F1"))
+        self.button_delete.setShortcut(_translate("Dialog", "Del"))
+        self.button_save.setToolTip(_translate("Dialog", "Ctrl+S"))
         self.button_save.setText(_translate("Dialog", "Lưu"))
-        self.button_save.setShortcut(_translate("Dialog", "F1"))
+        self.button_save.setShortcut(_translate("Dialog", "Ctrl+S"))
 import resource_rc

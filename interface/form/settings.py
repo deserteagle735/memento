@@ -146,6 +146,10 @@ class Ui_Dialog(object):
         self.label.setText(_translate("Dialog", "Tìm từ theo"))
         self.tab.setTabText(self.tab.indexOf(self.test), _translate("Dialog", "Kiểm tra"))
         self.tab.setTabText(self.tab.indexOf(self.data), _translate("Dialog", "Dữ liệu"))
+        self.button_cancel.setToolTip(_translate("Dialog", "Esc"))
         self.button_cancel.setText(_translate("Dialog", "Hủy"))
+        self.button_cancel.setShortcut(_translate("Dialog", "Esc"))
+        self.button_save.setToolTip(_translate("Dialog", "Ctrl+S"))
         self.button_save.setText(_translate("Dialog", "Lưu"))
+        self.button_save.setShortcut(_translate("Dialog", "Ctrl+S"))
 import resource_rc

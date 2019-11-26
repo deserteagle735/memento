@@ -277,6 +277,9 @@ QLineEdit:focus
     <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
       <widget class="QPushButton" name="button_show_answer">
+       <property name="toolTip">
+        <string>Ctrl+K</string>
+       </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{border-radius:10px;
 border:1px solid gray;
@@ -298,6 +301,9 @@ border: 1px solid #006080;
          <height>20</height>
         </size>
        </property>
+       <property name="shortcut">
+        <string>Ctrl+K</string>
+       </property>
        <property name="autoDefault">
         <bool>true</bool>
        </property>
@@ -308,6 +314,9 @@ border: 1px solid #006080;
      </item>
      <item>
       <widget class="QPushButton" name="button_play_record">
+       <property name="toolTip">
+        <string>Ctrl+P</string>
+       </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{border-radius:10px;
 border:1px solid gray;
@@ -329,6 +338,9 @@ border: 1px solid #006080;
          <height>20</height>
         </size>
        </property>
+       <property name="shortcut">
+        <string>Ctrl+P</string>
+       </property>
        <property name="autoDefault">
         <bool>true</bool>
        </property>
@@ -341,6 +353,9 @@ border: 1px solid #006080;
       <widget class="QPushButton" name="button_check">
        <property name="enabled">
         <bool>true</bool>
+       </property>
+       <property name="toolTip">
+        <string>Ctrl+Enter</string>
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{border-radius:10px;
@@ -360,6 +375,9 @@ border:1px solid rgb(195, 203, 218);
        <property name="text">
         <string>Kiểm tra</string>
        </property>
+       <property name="shortcut">
+        <string>Ctrl+Return</string>
+       </property>
        <property name="autoDefault">
         <bool>true</bool>
        </property>
@@ -372,6 +390,9 @@ border:1px solid rgb(195, 203, 218);
       <widget class="QPushButton" name="button_next">
        <property name="enabled">
         <bool>true</bool>
+       </property>
+       <property name="toolTip">
+        <string>Ctrl+N</string>
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton{border-radius:10px;
@@ -387,6 +408,9 @@ border: 1px solid #006080;
        </property>
        <property name="text">
         <string>Tiếp theo</string>
+       </property>
+       <property name="shortcut">
+        <string>Ctrl+N</string>
        </property>
        <property name="autoDefault">
         <bool>true</bool>
