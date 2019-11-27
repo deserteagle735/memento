@@ -1,0 +1,15 @@
+<RCC>
+  <qresource prefix="/">
+    <file>resource/check.png</file>
+    <file>resource/remove.png</file>
+    <file>resource/question.png</file>
+    <file>resource/speaker.png</file>
+    <file>resource/search.png</file>
+    <file>resource/media-record.png</file>
+    <file>resource/memento.ico</file>
+    <file>resource/drop-down-arrow.png</file>
+  </qresource>
+  <qresource prefix="/font">
+    <file>font/SF-Pro-Display-Regular.otf</file>
+  </qresource>
+</RCC>
