@@ -14,6 +14,7 @@ MAX_HINT_LEVEL = 4
 MAX_LEVEL = 5
 RATIO = [4, 2, 2, 1, 1]
 TOTAL = 10
+HIDDEN_CHARACTER = '?'
 
 class Tag(QDialog):
     def __init__(self):
@@ -120,7 +121,7 @@ class Test(QDialog):
             dialog_next = QMessageBox(self)
             dialog_next.setStyleSheet("font: 12pt \"SF Pro Display\";")
             dialog_next.setWindowTitle("Tiếp theo")
-            dialog_next.setInformativeText("""Bạn chưa trả lời đúng.\nBạn có chắc chắn muốn chuyến sang câu tiếp theo?""")
+            dialog_next.setText("""Bạn chưa trả lời đúng.\nBạn có chắc chắn muốn chuyến sang câu tiếp theo?""")
             #icon
             dialog_next.setIcon(QMessageBox.Icon(QMessageBox.Question))
             #button
@@ -157,7 +158,7 @@ class Test(QDialog):
         dialog_show_answer = QMessageBox(self)
         dialog_show_answer.setStyleSheet("font: 12pt \"SF Pro Display\";")
         dialog_show_answer.setWindowTitle("Đáp")
-        dialog_show_answer.setInformativeText("""Bạn có muốn hiện đáp án?""")
+        dialog_show_answer.setText("""Bạn có muốn hiện đáp án?""")
         #icon
         dialog_show_answer.setIcon(QMessageBox.Icon(QMessageBox.Question))
         #button
@@ -170,6 +171,7 @@ class Test(QDialog):
         result = dialog_show_answer.exec_()
         if result == QMessageBox.AcceptRole:
             txt = "<p style = 'color:green'>" + self.words[self.current_index].vocabulary +"</p>"
+            self.form.button_show_answer.setDisabled(True)
             self.form.label_top.setText(txt)
             self.form.label_bottom.setText("")
             self.form.button_check.setDisabled(True)
@@ -198,6 +200,7 @@ class Test(QDialog):
             return
         self.show_word(self.words[self.current_index])
         self.tag_dialog.close()
+
     #Retrieve word from database
     def get_words(self):
         #test
@@ -240,7 +243,7 @@ class Test(QDialog):
         list_word = word.vocabulary.split()
         l_txt = []
         for item in list_word:
-            txt = [item[0]] + ["\u20DE"] * (len(item) - 1)
+            txt = [item[0]] + [HIDDEN_CHARACTER] * (len(item) - 1)
             if len(item) > 2:
                 txt[-1] = item[-1]
             l_txt.append("".join(txt))
@@ -295,7 +298,7 @@ class Test(QDialog):
             list_word = word.vocabulary.split()
             l_txt = []
             for item in list_word:
-                txt = ["\u20DE"] * len(item) 
+                txt = [HIDDEN_CHARACTER] * len(item) 
                 l_txt.append("".join(txt))
 
             encoded_txt = " ".join(l_txt)

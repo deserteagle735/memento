@@ -104,18 +104,6 @@ class Add(QDialog):
                     print("File " + recorded_file_name + " not found")
 
     def play_record(self):
-        # if form.button_play_record.displayText() == "Nghe lại":
-        #     self.form.button_play_record.setText("Dừng")
-        #     state = interface.audio.play_audio(self, self.controller.media_folder_path, self.record_name)
-        # if state == QMediaPlayer.StoppedState:
-        #     self.form.button_play_record.setText("Nghe Lại")
-        #     print("playing record")
-        # else:
-        #     if self.form.button_play_record
-        #     state = interface.audio.pause_audio()
-        #     if state == QMediaPlayer.StoppedState:
-        #interface.audio.play_audio(self.form.button_play_record, self.controller.media_folder_path, self.record_name)
-        #QSound.play("/home/deserteagle735/Desktop/PyQt-audio-record/test.wav")
         if self.record_name != "":
             interface.audio.play_audio(self.controller.media_folder_path, self.record_name)
         

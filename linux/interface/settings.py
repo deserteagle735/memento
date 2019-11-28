@@ -86,7 +86,7 @@ class Settings(QDialog):
         self.form.button_cancel.clicked.connect(self.button_cancel_click)
         self.form.spinbox_test_level.valueChanged.connect(self.spinbox_test_level_value_changed)
         self.form.spinbox_hint_level.valueChanged.connect(self.spinbox_hint_level_value_changed)
-
+        self.form.button_reset.clicked.connect(self.reset)
 
     def save_config(self):
         self.config["field"] = self.form.combobox_field.currentIndex()
@@ -100,6 +100,16 @@ class Settings(QDialog):
 
     def spinbox_hint_level_value_changed(self):
         self.setup_data()
+    
+    def reset(self):
+        old = self.form.spinbox_old_level.value()
+        new = self.form.spinbox_new_level.value()
+        txt = "Bạn có chắc chắn muốn đặt lại\nCác từ trình độ " + str(old) + " thành\nCác từ trình độ " + str(new) + " ?"
+        res = QMessageBox.question(None, "Đặt lại", txt, QMessageBox.Ok|QMessageBox.Cancel)
+        if res == QMessageBox.Ok:
+            if old != new:
+                self.controller.db.reset_word(old, new)
+            QMessageBox.question(None, "Đặt lại", "Đặt lại thành công", QMessageBox.Ok)
 
     def button_save_clicked(self):
         self.save_config()

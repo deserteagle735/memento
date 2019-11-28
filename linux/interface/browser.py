@@ -2,6 +2,7 @@ import interface
 import os
 import datetime
 import shutil
+import interface.audio
 from interface.qt import *
 from memento.word import Word
 from memento import utils
@@ -38,6 +39,7 @@ class Browser(QDialog):
         self.setup_ui()
         self.setup_data()   
         self.setup_button()
+        self.timer.timeout.connect(self.close_popup)
         
     def setup_ui(self):
         self.setup_dialog()
@@ -87,6 +89,7 @@ class Browser(QDialog):
         #picture
         self.picture_name = str(record.value("picture_name"))
         self.last_pic = self.picture_name
+        self.pics = []
         if self.picture_name != "":
             pixmap = QPixmap(os.path.join(self.controller.media_folder_path,self.picture_name))
             height = pixmap.height()
@@ -102,6 +105,7 @@ class Browser(QDialog):
         #record
         self.record_name = str(record.value("record_name"))
         self.last_rec = self.record_name
+        self.recs = []
         if self.record_name != "":
             self.form.button_delete_record.setEnabled(True)
             self.form.button_play_record.setEnabled(True)
@@ -205,15 +209,16 @@ class Browser(QDialog):
                 except:
                     print("File " + file + " not found")
 
+
         self.model.submitAll()
         self.form.tableView.setCurrentIndex(self.model.index(self.current_row, 0))
         self.show_popup()
         print("Saved " + self.form.text_vocabulary.displayText())
 
 
-    def show_popup(self):
-        self.form.label_bottom.setText("<p style = 'color:green'>Đã lưu<p>")    
-        self.timer.timeout.connect(self.close_popup)
+    def show_popup(self, text = "Đã lưu"):
+        temp = "<p style = 'color:green'>" + text + "</p>"
+        self.form.label_bottom.setText(temp)    
         self.timer.start(1000)
     
     def close_popup(self):
@@ -259,7 +264,7 @@ class Browser(QDialog):
             
             #delete before file
             if picture_before:
-                self.pics.append(picture_before)
+                self.pics.append(picture_name_before)
 
     def delete_picture(self):
         if self.picture_name != "":
@@ -279,7 +284,7 @@ class Browser(QDialog):
             self.form.button_play_record.setEnabled(True)
             
             if recorded_before:
-                self.recs.append(recorded_before)
+                self.recs.append(recorded_file_name)
                 
 
     def play_record(self):
@@ -312,12 +317,13 @@ class Browser(QDialog):
 
         index = self.form.tableView.currentIndex()
         self.on_row_changed(index, index)
+        self.show_popup(text="Đã hủy")
 
     def delete_word(self):
         self.form.label_bottom.setText("")
         temp_word = self.form.text_vocabulary.displayText()
         delete_dialog = QMessageBox(self)
-        txt = "Bạn có chắc chắn xóa " + temp_word + "?"
+        txt = "Bạn có chắc chắn xóa \"" + temp_word + "\"?"
         delete_dialog.setText(txt)
         delete_dialog.setWindowTitle("Xóa từ")
         #button
@@ -357,5 +363,7 @@ class Browser(QDialog):
             self.model.deleteRowFromTable(index)
             self.model.submitAll()
             self.form.tableView.setCurrentIndex(self.model.index(0,0))
+            txt = "Đã xóa \"" + temp_word + "\""
+            self.show_popup(text=txt)
             print("Deleted word: ", temp_word)
             
