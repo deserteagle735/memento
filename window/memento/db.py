@@ -77,7 +77,7 @@ picture_name = ?,
 record_name = ?
 where id = ? 
 """)
-        query.submitAlladdBindValue(word.vocabulary)
+        query.addBindValue(word.vocabulary)
         query.addBindValue(word.category)
         query.addBindValue(word.phonetic)
         query.addBindValue(word.hint)
@@ -336,6 +336,18 @@ where id = ?""")
         query.addBindValue(word.met)
         query.addBindValue(word.correct)
         query.addBindValue(word.id)
+        query.exec_()
+
+    def reset_word(self, old, new):
+        query = QSqlQuery(self.connection)
+        query.prepare(
+"""update word 
+set 
+level = ?
+where level = ? 
+""")
+        query.addBindValue(new)
+        query.addBindValue(old)
         query.exec_()
 
     def close(self):

@@ -58,6 +58,10 @@ def play_audio(media_folder, filename):
     # player.setMedia(str(QUrl.fromLocalFile(os.path.join(media_folder, filename))))
     # player.play()
     #QSound.play("/home/deserteagle735/Desktop/PyQt-audio-record/test.wav")
+    if filename == "" or filename == None:
+        print("Filename parameter is null")
+        return
+        
     print("Playing record", filename)
     try:
         QSound.play(os.path.join(media_folder, filename))

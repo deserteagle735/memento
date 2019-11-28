@@ -16,7 +16,7 @@ class Ui_Dialog(object):
         Dialog.setWindowModality(QtCore.Qt.ApplicationModal)
         Dialog.resize(400, 449)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../resource/icon/memento.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(":/resource/memento.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         Dialog.setWindowIcon(icon)
         Dialog.setStyleSheet("font: 12pt \"SF Pro Display\";")
         self.verticalLayout = QtWidgets.QVBoxLayout(Dialog)

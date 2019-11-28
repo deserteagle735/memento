@@ -17,8 +17,8 @@
    <string>Thêm từ mới</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>../resource/icon/memento.ico</normaloff>../resource/icon/memento.ico</iconset>
+   <iconset resource="../../resource.qrc">
+    <normaloff>:/resource/memento.ico</normaloff>:/resource/memento.ico</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">font: 12pt &quot;SF Pro Display&quot;;</string>
